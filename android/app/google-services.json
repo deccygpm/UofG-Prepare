@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1017582329798",
+    "project_id": "l2-transition",
+    "storage_bucket": "l2-transition.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017582329798:android:38ab812c354e23cc1edcc7",
+        "android_client_info": {
+          "package_name": "com.uofg.l2transition.l2_transition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017582329798-pq4tjm7agr7nt1hmbc71voseb0nl26rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3KfTPc8iNccnInHTSfK52utaw5HuI4hY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017582329798-pq4tjm7agr7nt1hmbc71voseb0nl26rb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1017582329798-0t93lpfnehp030l6rhqf05uli13sss8q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.uofg.l2transition.l2Transition"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
