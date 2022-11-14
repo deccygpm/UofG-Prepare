@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'widgets/app_bar.dart';
+import 'package:l2_transition/routes.dart';
+import 'package:l2_transition/theme.dart';
+import 'services/firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,24 +38,9 @@ class _AppState extends State<App> {
           }
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
-                home: Scaffold(
-                    appBar: const CustomAppBar(),
-                    body: const Center(
-                      child: Text("Hello"),
-                    ),
-                    drawer: Drawer(
-                        child:
-                            ListView(padding: EdgeInsets.zero, children: const [
-                      SizedBox(
-                        height: 128,
-                        child: DrawerHeader(
-                            decoration: BoxDecoration(
-                              color: Color(0xFF003865),
-                            ),
-                            child: Text('Drawer Header')),
-                      ),
-                      ListTile(title: Text('Item 1'))
-                    ]))));
+              routes: appRoutes,
+              theme: appTheme,
+            );
           }
           return const Text('loading');
         });

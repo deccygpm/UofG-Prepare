@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -14,8 +15,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: Padding(
           padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 0),
           child: IconButton(
-            iconSize: 36,
-            icon: Icon(Icons.menu_rounded),
+            color: const Color.fromARGB(255, 205, 205, 205),
+            icon: const Icon(FontAwesomeIcons.bars),
+            iconSize: 30,
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
