@@ -11,15 +11,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu_rounded),
-          onPressed: () => Scaffold.of(context).openDrawer(),
+        leading: Padding(
+          padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 0),
+          child: IconButton(
+            iconSize: 36,
+            icon: Icon(Icons.menu_rounded),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
         backgroundColor: const Color(0xFF003865),
         centerTitle: true,
-        title: Image.asset(
-          'assets/image/uofg-logo.jpg',
-          scale: 15,
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
+          child: Image.asset(
+            'assets/image/uofg-logo.jpg',
+            scale: 8,
+          ),
         ));
   }
 }
