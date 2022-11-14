@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/shared/shared.dart';
+import 'package:l2_transition/services/auth.dart';
 
 class SelectionScreen extends StatelessWidget {
-  const SelectionScreen({super.key});
+  SelectionScreen({super.key});
+  final authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      drawer: CustomDrawer(),
-      body: Center(child: Text('hello')),
-    );
+    return Scaffold(
+        appBar: const CustomAppBar(),
+        drawer: const CustomDrawer(),
+        body: Center(
+            child: ElevatedButton(
+                onPressed: () async {
+                  await authService.logout();
+                },
+                child: const Text("logout"))));
   }
 }
