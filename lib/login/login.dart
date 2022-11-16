@@ -14,17 +14,31 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
-      body: Column(
-        children: [
-          ElevatedButton(
+      body: Center(
+        child: Column(
+          children: [
+            SignInButtonBuilder(
+              backgroundColor: Colors.white,
               onPressed: () async {
                 await authService.guestLogin();
               },
-              child: const Text("guest")),
-          SignInButton(Buttons.Google, onPressed: () async {
-            await authService.googleLogin();
-          })
-        ],
+              text: 'Guest',
+              icon: Icons.verified_user_rounded,
+              fontSize: 14.0,
+              iconColor: Colors.black,
+              textColor: Colors.black,
+            ),
+            SignInButton(Buttons.Google, onPressed: () async {
+              await authService.googleLogin();
+            }),
+            SignInButton(
+              Buttons.Apple,
+              onPressed: () async {
+                await authService.signInWithApple();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

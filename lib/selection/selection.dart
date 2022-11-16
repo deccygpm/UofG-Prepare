@@ -11,11 +11,6 @@ class SelectionScreen extends StatelessWidget {
     return Scaffold(
         appBar: const CustomAppBar(),
         drawer: const CustomDrawer(),
-        body: Center(
-            child: ElevatedButton(
-                onPressed: () async {
-                  await authService.logout();
-                },
-                child: const Text("logout"))));
+        body: Center(child: Text("selection page")));
   }
 }
