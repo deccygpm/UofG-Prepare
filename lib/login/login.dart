@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:l2_transition/login/email_login.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:l2_transition/services/auth.dart';
@@ -30,7 +31,9 @@ class LoginScreen extends StatelessWidget {
               iconColor: Colors.black,
               textColor: Colors.black,
             ),
-            SignInButton(Buttons.Google, onPressed: () async {
+            SignInButton(
+                Buttons.Google,
+                onPressed: () async {
               await authService.googleLogin();
             }), if(Platform.isIOS)
             SignInButton(
@@ -39,6 +42,18 @@ class LoginScreen extends StatelessWidget {
                 await authService.signInWithApple();
               },
             ),
+            SignInButtonBuilder(
+                icon: Icons.verified_user_rounded,
+                fontSize: 14.0,
+                iconColor: Colors.black,
+                textColor: Colors.black,
+                backgroundColor: Colors.white,
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) {return const EmailLoginScreen();},
+                        fullscreenDialog: true,
+                )),
+                text: 'Sign in with Email'),
           ],
         ),
       ),
