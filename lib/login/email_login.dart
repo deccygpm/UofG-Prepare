@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:l2_transition/shared/shared.dart';
 
 import '../services/auth.dart';
 
 class EmailLoginScreen extends StatelessWidget {
-  const EmailLoginScreen({Key? key}) : super(key: key);
+  EmailLoginScreen({
+    Key? key,
+  }) : super(key: key);
+
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -14,35 +18,68 @@ class EmailLoginScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Headline(data: "Sign In"),
-            Divider(
-              color: Colors.transparent,
-            ),
-            const InputBox(
-              label: 'Email',
-              isObscure: false,
-              keyboard: TextInputType.emailAddress,
-            ),
-            const Divider(),
-            const InputBox(
-              label: 'Password',
-              isObscure: true,
-              keyboard: TextInputType.text,
-            ),
+            const Headline(data: "Sign In"),
             const Divider(
               color: Colors.transparent,
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20,0,0,0),
-              child: SignInButtonBuilder(
-                backgroundColor: Colors.white,
-                icon: Icons.check_rounded,
-                iconColor: Colors.black,
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 3.0,
+                      )),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: TextField(
+                        onChanged: (value) {
+                          email = value;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(labelText: "Email"),
+                      )),
+                )),
+            const Divider(),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 3.0,
+                      )),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: TextField(
+                        obscureText: true,
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration:
+                            const InputDecoration(labelText: "Password"),
+                      )),
+                )),
+            const Divider(
+              color: Colors.transparent,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: OutlinedButton(
                 onPressed: () async {
-                  AuthService().emailSignIn;
+                  await AuthService().emailSignIn(email, password);
                 },
-                text: 'Log In',
-                textColor: Colors.black,
+                child: const Text(
+                  "Sign In",
+                  style: TextStyle(color: Colors.black),
+                ),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.black, width: 3),
+                ),
               ),
             ),
           ],
