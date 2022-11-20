@@ -42,7 +42,7 @@ class _AppState extends State<App> {
               theme: appTheme,
             );
           }
-          return const Text('loading');
+          return const Text('loading', textDirection: TextDirection.ltr,);
         });
   }
 }
