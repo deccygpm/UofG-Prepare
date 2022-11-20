@@ -22,8 +22,22 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
   }
 
+  Future<void> emailSignUp(String email, String password) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      //ToDo - Handle error
+    }
+  }
+
   Future<void> emailSignIn(String email, String password) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      //ToDo - Handle error
+    }
   }
 
   Future<void> googleLogin() async {

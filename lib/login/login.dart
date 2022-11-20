@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                 backgroundColor: Colors.white,
                 onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (BuildContext context) {return const EmailLoginScreen();},
+                        builder: (BuildContext context) {return EmailLoginScreen();},
                         fullscreenDialog: true,
                 )),
                 text: 'Sign in with Email'),
