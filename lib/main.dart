@@ -33,9 +33,6 @@ class _AppState extends State<App> {
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text('error');
-          }
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               routes: appRoutes,
