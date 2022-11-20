@@ -16,5 +16,4 @@ var appTheme = ThemeData(
     )),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: Colors.black,
-
     ));
