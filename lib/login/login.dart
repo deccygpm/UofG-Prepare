@@ -3,6 +3,8 @@ import 'package:l2_transition/shared/shared.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:io' show Platform;
+
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -30,7 +32,7 @@ class LoginScreen extends StatelessWidget {
             ),
             SignInButton(Buttons.Google, onPressed: () async {
               await authService.googleLogin();
-            }),
+            }), if(Platform.isIOS)
             SignInButton(
               Buttons.Apple,
               onPressed: () async {
