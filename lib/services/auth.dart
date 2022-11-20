@@ -22,6 +22,10 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
   }
 
+  Future<void> emailSignIn(String email, String password) async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+  }
+
   Future<void> googleLogin() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
