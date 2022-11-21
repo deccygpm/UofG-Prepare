@@ -87,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                 backgroundColor: Colors.white,
                 onPressed: () => AuthService().guestLogin(),
                 text: 'Continue as Guest',
-                icon: Icons.verified_user_rounded,
+                icon: Icons.person,
                 fontSize: 14.0,
                 iconColor: Colors.black,
                 textColor: Colors.black,

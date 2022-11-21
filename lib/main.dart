@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:l2_transition/routes.dart';
 import 'package:l2_transition/theme.dart';
+
 import 'services/firebase_options.dart';
 
 void main() {
@@ -39,7 +40,10 @@ class _AppState extends State<App> {
               theme: appTheme,
             );
           }
-          return const Text('loading', textDirection: TextDirection.ltr,);
+          return const Text(
+            'loading',
+            textDirection: TextDirection.ltr,
+          );
         });
   }
 }
