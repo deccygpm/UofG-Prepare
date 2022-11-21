@@ -26,8 +26,8 @@ class UserProfilePage extends StatelessWidget {
                       ),
                       SignInButtonBuilder(
                         backgroundColor: Colors.white,
-                        onPressed: () async {
-                          await FirebaseAuth.instance.signOut();
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
                           Navigator.pushNamedAndRemoveUntil(
                               context, '/', (route) => false);
                         },

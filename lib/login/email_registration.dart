@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/shared/app_bar.dart';
 import 'package:l2_transition/shared/headline.dart';
 
