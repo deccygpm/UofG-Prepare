@@ -4,6 +4,7 @@ import 'package:l2_transition/shared/headline.dart';
 
 import '../services/auth.dart';
 
+// ignore: must_be_immutable
 class RegistrationScreen extends StatelessWidget {
   RegistrationScreen({Key? key}) : super(key: key);
 
@@ -13,11 +14,11 @@ class RegistrationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Headline(data: "Register"),
+          const Headline(data: "Register"),
           Container(
             decoration: BoxDecoration(
                 color: Colors.white,

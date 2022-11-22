@@ -6,6 +6,7 @@ import 'package:l2_transition/shared/shared.dart';
 
 import '../services/auth.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({
     Key? key,
@@ -19,15 +20,30 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         appBar: const CustomAppBar(),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Headline(data: "Sign In"),
-              const Divider(
-                color: Colors.transparent,
-              ),
-              Container(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Headline(data: "Sign In"),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 3.0,
+                  )),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: TextField(
+                    onChanged: (value) {
+                      email = value;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(labelText: "Email"),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
@@ -35,25 +51,7 @@ class LoginScreen extends StatelessWidget {
                       width: 3.0,
                     )),
                 child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: TextField(
-                      onChanged: (value) {
-                        email = value;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(labelText: "Email"),
-                    )),
-              ),
-              const Divider(),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 3.0,
-                    )),
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    padding: const EdgeInsets.only(left: 10),
                     child: TextField(
                       obscureText: true,
                       onChanged: (value) {
@@ -63,10 +61,10 @@ class LoginScreen extends StatelessWidget {
                       decoration: const InputDecoration(labelText: "Password"),
                     )),
               ),
-              const Divider(
-                color: Colors.transparent,
-              ),
-              OutlinedButton(
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: OutlinedButton(
                 onPressed: () => AuthService().emailSignIn(email, password),
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -77,50 +75,62 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              const Divider(
-                color: Colors.black,
+            ),
+            const Divider(
+              color: Colors.black,
+            ),
+            const Headline(
+              data: "Or",
+            ),
+            Center(
+              child: Column(
+                children: [
+                  SignInButtonBuilder(
+                    shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 3, color: Colors.black),
+                        borderRadius: BorderRadius.circular(3)),
+                    backgroundColor: Colors.white,
+                    onPressed: () => AuthService().guestLogin(),
+                    text: 'Continue as Guest',
+                    icon: Icons.person,
+                    fontSize: 14.0,
+                    iconColor: Colors.black,
+                    textColor: Colors.black,
+                  ),
+                  SignInButton(Buttons.Google,
+                      shape: RoundedRectangleBorder(
+                          side: const BorderSide(color: Colors.black, width: 3),
+                          borderRadius: BorderRadius.circular(3)),
+                      onPressed: () => AuthService().googleLogin()),
+                  if (Platform.isIOS)
+                    SignInButton(Buttons.Apple,
+                        shape: RoundedRectangleBorder(
+                            side:
+                                const BorderSide(color: Colors.black, width: 3),
+                            borderRadius: BorderRadius.circular(3)),
+                        onPressed: () => AuthService().signInWithApple()),
+                  const Divider(
+                    color: Colors.black,
+                  ),
+                  const Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        "Don't have an account?",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  TextButton(
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/login/register'),
+                      child: const Text(
+                        "Click here to Register",
+                        style: TextStyle(
+                            color: Colors.black,
+                            decoration: TextDecoration.underline),
+                      )),
+                ],
               ),
-              const Headline(
-                data: "Or",
-              ),
-              SignInButtonBuilder(
-                backgroundColor: Colors.white,
-                onPressed: () => AuthService().guestLogin(),
-                text: 'Continue as Guest',
-                icon: Icons.person,
-                fontSize: 14.0,
-                iconColor: Colors.black,
-                textColor: Colors.black,
-              ),
-              SignInButton(Buttons.Google,
-                  onPressed: () => AuthService().googleLogin()),
-              if (Platform.isIOS)
-                SignInButton(Buttons.Apple,
-                    onPressed: () => AuthService().signInWithApple()),
-              const Divider(
-                color: Colors.black,
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                child: Center(
-                    child: Text(
-                  "Don't have an account?",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
-              ),
-              Center(
-                child: TextButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/login/register'),
-                    child: const Text(
-                      "Click here to Register",
-                      style: TextStyle(
-                          color: Colors.black,
-                          decoration: TextDecoration.underline),
-                    )),
-              )
-            ],
-          ),
+            ),
+          ]),
         ));
   }
 }
