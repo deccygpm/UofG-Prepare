@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/services/auth.dart';
+import 'package:l2_transition/shared/shared.dart';
 
 class SelectionScreen extends StatelessWidget {
   SelectionScreen({super.key});
@@ -8,9 +8,9 @@ class SelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const CustomAppBar(),
-        drawer: const CustomDrawer(),
+    return const Scaffold(
+        appBar: CustomAppBar(),
+        drawer: CustomDrawer(),
         body: Center(child: Text("selection page")));
   }
 }
