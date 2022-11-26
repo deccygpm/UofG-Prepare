@@ -29,7 +29,12 @@ class AuthService {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      Utils.showErrorAlert(e.message);
+      if (e.code == 'email-already-in-use') {
+        Utils.showErrorAlert(
+            "You have already registered.\nClick the link above to log in.");
+      } else {
+        Utils.showErrorAlert(e.message);
+      }
     }
   }
 
@@ -41,10 +46,11 @@ class AuthService {
       if (e.code == 'user-not-found') {
         Utils.showErrorAlert(
             'Email address not found.\nClick the link above to register.');
-      }
-      if (e.code == 'wrong-password') {
+      } else if (e.code == 'wrong-password') {
         Utils.showErrorAlert(
             'Incorrect password.\nPlease try again or click reset password if you have forgotten your password.');
+      } else {
+        Utils.showErrorAlert(e.message);
       }
     }
   }

@@ -8,7 +8,7 @@ import 'package:l2_transition/shared/shared.dart';
 import '../services/auth.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({
+  const LoginScreen({
     Key? key,
   }) : super(key: key);
 
@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final RegExp regex = RegExp(r'^(?=.*?[A-Z]).{8,}$');
 
   @override
   void dispose() {
@@ -82,10 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const InputDecoration(labelText: "Password"),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            validator: (password) =>
-                                password != null && !(password.length > 6)
-                                    ? 'Password must be at least 6 characters'
-                                    : null,
+                            validator: (password) => password != null &&
+                                    !(regex.hasMatch(password))
+                                ? 'Password must be at least 8 characters.\nPassword must contain at least one uppercase letter.'
+                                : null,
                           )),
                     ),
                   ),

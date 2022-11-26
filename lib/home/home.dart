@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
           } else if (snapshot.hasData) {
             return SelectionScreen();
           } else {
-            return LoginScreen();
+            return const LoginScreen();
           }
         });
   }

@@ -9,9 +9,10 @@ class Utils {
       behavior: SnackBarBehavior.floating,
       content: Text(
         text,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style:
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
-      backgroundColor: Color(0xFF003865),
+      backgroundColor: const Color(0xFF003865),
     );
     messengerKey.currentState!
       ..removeCurrentSnackBar()
