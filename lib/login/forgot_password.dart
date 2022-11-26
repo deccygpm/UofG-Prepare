@@ -32,27 +32,31 @@ class _ForgottenPasswordModalState extends State<ForgottenPasswordModal> {
             const Headline(data: "Forgotten Password"),
             const Text(
                 "Enter the email address you used to register your account with below."),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 3.0,
-                    )),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.done,
-                    decoration: const InputDecoration(labelText: "Email"),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (email) =>
-                        email != null && !EmailValidator.validate(email)
-                            ? 'Enter a valid email'
-                            : null,
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 3.0,
+                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextFormField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.done,
+                      decoration: const InputDecoration(
+                        labelText: "Email",
+                      ),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (email) =>
+                          email != null && !EmailValidator.validate(email)
+                              ? 'Enter a valid email'
+                              : null,
+                    ),
                   ),
                 ),
               ),

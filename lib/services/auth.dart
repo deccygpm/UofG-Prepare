@@ -24,7 +24,7 @@ class AuthService {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       Utils.showSuccessAlert(
-          'Please check your email for instructions to reset your password.');
+          'Please check your email for instructions to reset your password.\n\nRemember to check your spam folder.');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Utils.showErrorAlert("No account found with this email address.");
