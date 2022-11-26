@@ -20,6 +20,20 @@ class AuthService {
     }
   }
 
+  Future<void> forgottenPassword(email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      Utils.showSuccessAlert(
+          'Please check your email for instructions to reset your password.');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Utils.showErrorAlert("No account found with this email address.");
+      } else {
+        Utils.showErrorAlert(e.message);
+      }
+    }
+  }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
   }

@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:l2_transition/login/forgot_password.dart';
 import 'package:l2_transition/login/login_buttons.dart';
 import 'package:l2_transition/login/register_link.dart';
 import 'package:l2_transition/main.dart';
@@ -90,35 +93,62 @@ class _LoginScreenState extends State<LoginScreen> {
                           )),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        final isValid = formKey.currentState!.validate();
-                        if (!isValid) return;
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            final isValid = formKey.currentState!.validate();
+                            if (!isValid) return;
 
-                        showDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (context) => const Center(
-                                  child: CircularProgressIndicator(),
-                                ));
+                            showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (context) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ));
 
-                        AuthService().emailSignIn(emailController.text.trim(),
-                            passwordController.text.trim());
+                            AuthService().emailSignIn(
+                                emailController.text.trim(),
+                                passwordController.text.trim());
 
-                        navigatorKey.currentState!
-                            .popUntil((route) => route.isFirst);
-                      },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        side: const BorderSide(color: Colors.black, width: 3),
+                            navigatorKey.currentState!
+                                .popUntil((route) => route.isFirst);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side:
+                                const BorderSide(color: Colors.black, width: 3),
+                          ),
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
                       ),
-                      child: const Text(
-                        "Sign In",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
+                      TextButton(
+                        child: const Text(
+                          'Forgot Password',
+                          style: TextStyle(
+                            color: Colors.black,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return const AlertDialog(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 205, 205, 205),
+                                  content: ForgottenPasswordModal(),
+                                );
+                              });
+                        },
+                      )
+                    ],
                   ),
                 ],
               ),
