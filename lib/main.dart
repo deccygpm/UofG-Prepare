@@ -17,6 +17,8 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class _AppState extends State<App> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,6 +31,7 @@ class _AppState extends State<App> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
+              navigatorKey: navigatorKey,
               routes: appRoutes,
               theme: appTheme,
             );
