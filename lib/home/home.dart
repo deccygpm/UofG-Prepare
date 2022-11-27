@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/login/login.dart';
-import 'package:l2_transition/selection/selection.dart';
+import 'package:l2_transition/login/auth_wrapper.dart';
+import 'package:l2_transition/login/email_verification.dart';
 import 'package:l2_transition/services/auth.dart';
 
 class Home extends StatelessWidget {
@@ -12,13 +12,15 @@ class Home extends StatelessWidget {
         stream: AuthService().userStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("loading");
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
             return const Text("error");
           } else if (snapshot.hasData) {
-            return SelectionScreen();
+            return const EmailVerificationScreen();
           } else {
-            return LoginScreen();
+            return const AuthScreen();
           }
         });
   }

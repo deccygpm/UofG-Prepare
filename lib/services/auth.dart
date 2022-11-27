@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
+import '../shared/utils.dart';
+
 class AuthService {
   final userStream = FirebaseAuth.instance.authStateChanges();
   final user = FirebaseAuth.instance.currentUser;
@@ -14,7 +16,29 @@ class AuthService {
     try {
       await FirebaseAuth.instance.signInAnonymously();
     } on FirebaseAuthException catch (e) {
-      //ToDo - handle error
+      Utils.showErrorAlert(e.message);
+    }
+  }
+
+  Future<void> sendVerificationEmail() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
+    }
+  }
+
+  Future<void> forgottenPassword(email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      Utils.showSuccessAlert(
+          'Please check your email for instructions to reset your password.\n\nRemember to check your spam folder.');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Utils.showErrorAlert("No account found with this email address.");
+      } else {
+        Utils.showErrorAlert(e.message);
+      }
     }
   }
 
@@ -27,7 +51,12 @@ class AuthService {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      //ToDo - Handle error
+      if (e.code == 'email-already-in-use') {
+        Utils.showErrorAlert(
+            "You have already registered.\nClick the link above to log in.");
+      } else {
+        Utils.showErrorAlert(e.message);
+      }
     }
   }
 
@@ -36,7 +65,15 @@ class AuthService {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      //ToDo - Handle error
+      if (e.code == 'user-not-found') {
+        Utils.showErrorAlert(
+            'Email address not found.\nClick the link above to register.');
+      } else if (e.code == 'wrong-password') {
+        Utils.showErrorAlert(
+            'Incorrect password.\nPlease try again or click reset password if you have forgotten your password.');
+      } else {
+        Utils.showErrorAlert(e.message);
+      }
     }
   }
 
@@ -51,12 +88,10 @@ class AuthService {
       );
       await FirebaseAuth.instance.signInWithCredential(authCredential);
     } on FirebaseAuthException catch (e) {
-      //ToDo - Handle Error
+      Utils.showErrorAlert(e.message);
     }
   }
 
-  /// Generates a cryptographically secure random nonce, to be included in a
-  /// credential request.
   String generateNonce([int length = 32]) {
     const charset =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
@@ -65,7 +100,6 @@ class AuthService {
         .join();
   }
 
-  /// Returns the sha256 hash of [input] in hex notation.
   String sha256ofString(String input) {
     final bytes = utf8.encode(input);
     final digest = sha256.convert(bytes);
@@ -76,8 +110,6 @@ class AuthService {
     try {
       final rawNonce = generateNonce();
       final nonce = sha256ofString(rawNonce);
-
-      // Request credential for the currently signed in Apple account.
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -85,18 +117,14 @@ class AuthService {
         ],
         nonce: nonce,
       );
-
-      // Create an `OAuthCredential` from the credential returned by Apple.
       final oauthCredential = OAuthProvider("apple.com").credential(
         idToken: appleCredential.identityToken,
         rawNonce: rawNonce,
       );
 
-      // Sign in the user with Firebase. If the nonce we generated earlier does
-      // not match the nonce in `appleCredential.identityToken`, sign in will fail.
       await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-    } on Exception catch (e) {
-      //ToDo - Handle error
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
     }
   }
 }

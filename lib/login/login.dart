@@ -1,136 +1,175 @@
-import 'dart:io' show Platform;
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:l2_transition/login/forgot_password.dart';
+import 'package:l2_transition/login/login_buttons.dart';
+import 'package:l2_transition/main.dart';
+import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
 
 import '../services/auth.dart';
 
-// ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
-  LoginScreen({
-    Key? key,
-  }) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  final VoidCallback onClickedSignUp;
 
-  String email = "";
-  String password = "";
+  const LoginScreen({Key? key, required this.onClickedSignUp})
+      : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Headline(data: "Sign In"),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 3.0,
-                  )),
-              child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextField(
-                    onChanged: (value) {
-                      email = value;
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(labelText: "Email"),
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 3.0,
-                    )),
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: TextField(
-                      obscureText: true,
-                      onChanged: (value) {
-                        password = value;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(labelText: "Password"),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: OutlinedButton(
-                onPressed: () => AuthService().emailSignIn(email, password),
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  side: const BorderSide(color: Colors.black, width: 3),
+      appBar: const CustomAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Headline(data: "Sign In"),
+          Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 3.0,
+                      )),
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: TextFormField(
+                          controller: emailController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(labelText: "Email"),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (email) =>
+                              ValidationService().validateEmail(email!))),
                 ),
-                child: const Text(
-                  "Sign In",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-            const Divider(
-              color: Colors.black,
-            ),
-            const Headline(
-              data: "Or",
-            ),
-            Center(
-              child: Column(
-                children: [
-                  SignInButtonBuilder(
-                    shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 3, color: Colors.black),
-                        borderRadius: BorderRadius.circular(3)),
-                    backgroundColor: Colors.white,
-                    onPressed: () => AuthService().guestLogin(),
-                    text: 'Continue as Guest',
-                    icon: Icons.person,
-                    fontSize: 14.0,
-                    iconColor: Colors.black,
-                    textColor: Colors.black,
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 3.0,
+                        )),
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: TextFormField(
+                          controller: passwordController,
+                          obscureText: true,
+                          textInputAction: TextInputAction.done,
+                          decoration:
+                              const InputDecoration(labelText: "Password"),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (password) =>
+                              ValidationService().validatePassword(password!),
+                        )),
                   ),
-                  SignInButton(Buttons.Google,
-                      shape: RoundedRectangleBorder(
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          final isValid = formKey.currentState!.validate();
+                          if (!isValid) return;
+
+                          showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ));
+
+                          AuthService().emailSignIn(emailController.text.trim(),
+                              passwordController.text.trim());
+
+                          navigatorKey.currentState!
+                              .popUntil((route) => route.isFirst);
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: Colors.white,
                           side: const BorderSide(color: Colors.black, width: 3),
-                          borderRadius: BorderRadius.circular(3)),
-                      onPressed: () => AuthService().googleLogin()),
-                  if (Platform.isIOS)
-                    SignInButton(Buttons.Apple,
-                        shape: RoundedRectangleBorder(
-                            side:
-                                const BorderSide(color: Colors.black, width: 3),
-                            borderRadius: BorderRadius.circular(3)),
-                        onPressed: () => AuthService().signInWithApple()),
-                  const Divider(
-                    color: Colors.black,
-                  ),
-                  const Padding(
-                      padding: EdgeInsets.only(top: 15),
-                      child: Text(
-                        "Don't have an account?",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )),
-                  TextButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/login/register'),
+                        ),
+                        child: const Text(
+                          "Sign In",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    TextButton(
                       child: const Text(
-                        "Click here to Register",
+                        'Forgot Password',
                         style: TextStyle(
-                            color: Colors.black,
-                            decoration: TextDecoration.underline),
-                      )),
-                ],
-              ),
+                          color: Colors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const AlertDialog(
+                                backgroundColor:
+                                    Color.fromARGB(255, 205, 205, 205),
+                                content: ForgottenPasswordModal(),
+                              );
+                            });
+                      },
+                    )
+                  ],
+                ),
+              ],
             ),
-          ]),
-        ));
+          ),
+          const Divider(
+            color: Colors.black,
+          ),
+          const Headline(data: 'Or'),
+          const LoginButtons(),
+          const Divider(color: Colors.black),
+          Center(
+            heightFactor: 2,
+            child: RichText(
+                text: TextSpan(
+                    text: "Don't have an account? ",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                    children: [
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = widget.onClickedSignUp,
+                    text: "Click here to Register",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      decoration: TextDecoration.underline,
+                      color: Colors.black,
+                    ),
+                  ),
+                ])),
+          )
+        ]),
+      ),
+    );
   }
 }
