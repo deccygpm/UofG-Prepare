@@ -6,6 +6,7 @@ import 'package:l2_transition/login/forgot_password.dart';
 import 'package:l2_transition/login/login_buttons.dart';
 import 'package:l2_transition/login/register_link.dart';
 import 'package:l2_transition/main.dart';
+import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
 
 import '../services/auth.dart';
@@ -23,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final RegExp regex = RegExp(r'^(?=.*?[A-Z]).{8,}$');
 
   @override
   void dispose() {
@@ -56,16 +56,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          controller: emailController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(labelText: "Email"),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (email) =>
-                              email != null && !EmailValidator.validate(email)
-                                  ? 'Enter a valid email'
-                                  : null,
-                        )),
+                            controller: emailController,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration:
+                                const InputDecoration(labelText: "Email"),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (email) =>
+                                ValidationService().validateEmail(email!))),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
@@ -86,10 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const InputDecoration(labelText: "Password"),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            validator: (password) => password != null &&
-                                    !(regex.hasMatch(password))
-                                ? 'Password must be at least 8 characters.\nPassword must contain at least one uppercase letter.'
-                                : null,
+                            validator: (password) =>
+                                ValidationService().validatePassword(password!),
                           )),
                     ),
                   ),

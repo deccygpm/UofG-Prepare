@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:l2_transition/main.dart';
 import 'package:l2_transition/services/auth.dart';
+import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
 
 class ForgottenPasswordModal extends StatefulWidget {
@@ -45,18 +46,15 @@ class _ForgottenPasswordModalState extends State<ForgottenPasswordModal> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.done,
-                      decoration: const InputDecoration(
-                        labelText: "Email",
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (email) =>
-                          email != null && !EmailValidator.validate(email)
-                              ? 'Enter a valid email'
-                              : null,
-                    ),
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.done,
+                        decoration: const InputDecoration(
+                          labelText: "Email",
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (email) =>
+                            ValidationService().validateEmail(email!)),
                   ),
                 ),
               ),
