@@ -20,6 +20,14 @@ class AuthService {
     }
   }
 
+  Future<void> sendVerificationEmail() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
+    }
+  }
+
   Future<void> forgottenPassword(email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
