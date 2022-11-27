@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/login/login.dart';
+import 'package:l2_transition/login/auth_wrapper.dart';
 import 'package:l2_transition/selection/selection.dart';
 import 'package:l2_transition/services/auth.dart';
 
@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
           } else if (snapshot.hasData) {
             return SelectionScreen();
           } else {
-            return const LoginScreen();
+            return const AuthScreen();
           }
         });
   }

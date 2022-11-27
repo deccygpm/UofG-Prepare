@@ -1,12 +1,14 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:l2_transition/login/login_link.dart';
 import 'package:l2_transition/main.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key});
+  final Function() onClickedSignIn;
+
+  const RegistrationScreen({super.key, required this.onClickedSignIn});
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -110,7 +112,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 const Divider(
                   color: Colors.black,
                 ),
-                const LoginLink(),
+                Center(
+                  heightFactor: 2,
+                  child: RichText(
+                      text: TextSpan(
+                          text: "Already have an account? ",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                          children: [
+                        TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.onClickedSignIn,
+                          text: "Click here to Sign In",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.underline,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ])),
+                )
               ],
             ),
           ),
