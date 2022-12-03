@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: themeGrey,
                             border: Border.all(
                               color: Colors.black,
                               width: 3.0,
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.only(top: 10),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: themeGrey,
                               border: Border.all(
                                 color: Colors.black,
                                 width: 3.0,
@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     .popUntil((route) => route.isFirst);
                               },
                               style: OutlinedButton.styleFrom(
-                                backgroundColor: Colors.white,
+                                backgroundColor: themeGrey,
                                 side: const BorderSide(
                                     color: Colors.black, width: 3),
                               ),
@@ -147,10 +147,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           TextButton(
-                            child: const Text(
+                            child: Text(
                               'Forgot Password',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: themeGrey,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -158,9 +158,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return const AlertDialog(
-                                      backgroundColor:
-                                          Color.fromARGB(255, 205, 205, 205),
+                                    return AlertDialog(
+                                      backgroundColor: themeBlue,
                                       content: ForgottenPasswordModal(),
                                     );
                                   });
@@ -180,17 +179,17 @@ class _LoginScreenState extends State<LoginScreen> {
             child: RichText(
                 text: TextSpan(
                     text: "Don't have an account? ",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: themeBlue),
                     children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
                       ..onTap = widget.onClickedSignUp,
                     text: "Click here to Register",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-                      color: Colors.black,
+                      color: themeBlue,
                     ),
                   ),
                 ])),

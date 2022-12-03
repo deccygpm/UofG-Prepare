@@ -3,6 +3,7 @@ import 'package:l2_transition/main.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
+import 'package:l2_transition/theme.dart';
 
 class ForgottenPasswordModal extends StatefulWidget {
   const ForgottenPasswordModal({super.key});
@@ -30,17 +31,19 @@ class _ForgottenPasswordModalState extends State<ForgottenPasswordModal> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Headline(
-              data: "Forgotten Password",
+              data: "Reset Password",
               color: Colors.white,
             ),
-            const Text(
-                "Enter the email address you used to register your account with below."),
+            Text(
+              "Enter the email address you used to register below",
+              style: TextStyle(color: themeGrey),
+            ),
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: themeGrey,
                       border: Border.all(
                         color: Colors.black,
                         width: 3.0,
@@ -78,7 +81,7 @@ class _ForgottenPasswordModalState extends State<ForgottenPasswordModal> {
                 navigatorKey.currentState!.popUntil((route) => route.isFirst);
               },
               style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: themeGrey,
                 side: const BorderSide(color: Colors.black, width: 3),
               ),
               child: const Text(
