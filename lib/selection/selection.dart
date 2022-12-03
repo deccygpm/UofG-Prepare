@@ -9,8 +9,6 @@ class SelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        appBar: CustomAppBar(),
-        drawer: CustomDrawer(),
-        body: Center(child: Text("selection page")));
+        appBar: CustomAppBar(), body: Center(child: Text("selection page")));
   }
 }

@@ -13,15 +13,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 0),
-        child: IconButton(
-          color: const Color.fromARGB(255, 205, 205, 205),
-          icon: const Icon(FontAwesomeIcons.bars),
-          iconSize: 30,
-          onPressed: () => Scaffold.of(context).openDrawer(),
-        ),
-      ),
       backgroundColor: const Color(0xFF003865),
       centerTitle: true,
       title: Padding(

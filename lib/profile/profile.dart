@@ -14,7 +14,6 @@ class UserProfilePage extends StatelessWidget {
         builder: (context, snapshot) {
           return Scaffold(
               appBar: const CustomAppBar(),
-              drawer: const CustomDrawer(),
               body: Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Center(
