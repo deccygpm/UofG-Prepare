@@ -5,6 +5,7 @@ import 'package:l2_transition/login/login_buttons.dart';
 import 'package:l2_transition/main.dart';
 import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
+import 'package:l2_transition/theme.dart';
 
 import '../services/auth.dart';
 
@@ -37,7 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Headline(data: "Sign In"),
+          Headline(
+            data: "Sign In",
+            color: themeGrey,
+          ),
           Form(
             key: formKey,
             child: Column(
@@ -145,7 +149,10 @@ class _LoginScreenState extends State<LoginScreen> {
           const Divider(
             color: Colors.black,
           ),
-          const Headline(data: 'Or'),
+          Headline(
+            data: 'Or',
+            color: themeGrey,
+          ),
           const LoginButtons(),
           const Divider(color: Colors.black),
           Center(

@@ -68,9 +68,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       : Scaffold(
           appBar: const CustomAppBar(),
           body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 20),
-              child: Headline(data: 'Verify Email'),
+              child: Headline(data: 'Verify Email', color: Colors.white),
             ),
             const Spacer(),
             const Padding(

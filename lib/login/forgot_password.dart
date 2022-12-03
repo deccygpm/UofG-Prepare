@@ -29,7 +29,10 @@ class _ForgottenPasswordModalState extends State<ForgottenPasswordModal> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Headline(data: "Forgotten Password"),
+            const Headline(
+              data: "Forgotten Password",
+              color: Colors.white,
+            ),
             const Text(
                 "Enter the email address you used to register your account with below."),
             Flexible(

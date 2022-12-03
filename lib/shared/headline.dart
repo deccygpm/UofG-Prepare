@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 
 class Headline extends StatelessWidget {
-  const Headline({Key? key, required this.data}) : super(key: key);
+  const Headline({Key? key, required this.data, required this.color})
+      : super(key: key);
 
   final String data;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-      child: Text(
-        data,
-        style: const TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.w700,
+    return Stack(
+      children: [
+        Text(
+          data,
+          style: TextStyle(
+            fontSize: 30,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 3
+              ..color = Colors.black,
+          ),
         ),
-      ),
+        Text(
+          data,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+            color: color,
+          ),
+        ),
+      ],
     );
   }
 }

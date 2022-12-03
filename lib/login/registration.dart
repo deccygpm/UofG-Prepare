@@ -4,6 +4,7 @@ import 'package:l2_transition/main.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/services/validation.dart';
 import 'package:l2_transition/shared/shared.dart';
+import 'package:l2_transition/theme.dart';
 
 class RegistrationScreen extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -38,7 +39,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Headline(data: 'Register'),
+                Headline(
+                  data: 'Register',
+                  color: themeGrey,
+                ),
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
