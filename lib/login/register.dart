@@ -18,6 +18,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final passwordMatchController = TextEditingController();
   final RegExp regex = RegExp(r'^(?=.*?[A-Z]).{8,}$');
 
   @override
@@ -109,6 +110,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     AutovalidateMode.onUserInteraction,
                                 validator: (password) => ValidationService()
                                     .validatePassword(password!))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: themeGrey,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3.0,
+                            )),
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: TextFormField(
+                                controller: passwordMatchController,
+                                obscureText: true,
+                                textInputAction: TextInputAction.done,
+                                decoration: const InputDecoration(
+                                    labelText: "Repeat Password"),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (repeatedPassword) =>
+                                    ValidationService().validatePasswordsMatch(
+                                        passwordController.text,
+                                        repeatedPassword!))),
                       ),
                     ),
                     Padding(

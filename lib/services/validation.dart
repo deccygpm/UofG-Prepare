@@ -18,4 +18,12 @@ class ValidationService {
       return null;
     }
   }
+
+  String? validatePasswordsMatch(String firstPassword, String matchedPassword) {
+    if (!(firstPassword == matchedPassword)) {
+      return 'Passwords do not match.';
+    } else {
+      return null;
+    }
+  }
 }
