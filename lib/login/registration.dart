@@ -34,10 +34,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         appBar: const CustomAppBar(),
         body: Column(
           children: [
-            Spacer(),
+            const Spacer(),
             Container(
               color: Colors.transparent,
-              margin: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
                 decoration: BoxDecoration(
                     boxShadow: [
@@ -50,7 +50,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     color: themeBlue,
                     border: Border.all(color: Colors.transparent),
                     borderRadius: BorderRadius.circular(8)),
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: Padding(
                   padding: const EdgeInsets.only(
                       right: 10, left: 10, top: 5, bottom: 5),
@@ -168,7 +168,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ])),
             ),
-            Spacer(flex: 3)
+            const Spacer(flex: 3)
           ],
         ));
   }

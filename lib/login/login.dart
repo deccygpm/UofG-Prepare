@@ -37,9 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: const CustomAppBar(),
       body: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       backgroundColor: themeBlue,
-                                      content: ForgottenPasswordModal(),
+                                      content: const ForgottenPasswordModal(),
                                     );
                                   });
                             },
@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          LoginButtons(),
+          const LoginButtons(),
           Center(
             heightFactor: 2,
             child: RichText(
@@ -194,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ])),
           ),
-          Spacer(
+          const Spacer(
             flex: 2,
           )
         ],
