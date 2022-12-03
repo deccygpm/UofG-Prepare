@@ -14,10 +14,10 @@ class Headline extends StatelessWidget {
         Text(
           data,
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 32,
             foreground: Paint()
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 3
+              ..strokeWidth = 1
               ..color = Colors.black,
           ),
         ),
@@ -25,7 +25,7 @@ class Headline extends StatelessWidget {
           data,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 30,
+            fontSize: 32,
             color: color,
           ),
         ),

@@ -6,7 +6,7 @@ Color themeBlue = Color(0xFF003865);
 
 var appTheme = ThemeData(
     canvasColor: themeGrey,
-    fontFamily: GoogleFonts.lusitana().fontFamily,
+    fontFamily: GoogleFonts.literata().fontFamily,
     inputDecorationTheme: const InputDecorationTheme(
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent)),

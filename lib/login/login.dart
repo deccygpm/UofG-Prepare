@@ -35,126 +35,146 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Headline(
-            data: "Sign In",
-            color: themeGrey,
-          ),
-          Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 3.0,
-                      )),
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: TextFormField(
-                          controller: emailController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(labelText: "Email"),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (email) =>
-                              ValidationService().validateEmail(email!))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3.0,
-                        )),
-                    child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: TextFormField(
-                          controller: passwordController,
-                          obscureText: true,
-                          textInputAction: TextInputAction.done,
-                          decoration:
-                              const InputDecoration(labelText: "Password"),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (password) =>
-                              ValidationService().validatePassword(password!),
-                        )),
+      body: Column(
+        children: [
+          Spacer(),
+          Container(
+            margin: EdgeInsets.all(10),
+            color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.4),
+                    spreadRadius: 2,
+                    blurRadius: 3,
+                  ),
+                ],
+                color: themeBlue,
+                border: Border.all(color: Colors.transparent),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Headline(data: "Sign In", color: themeGrey),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3.0,
+                            )),
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: TextFormField(
+                                controller: emailController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration:
+                                    const InputDecoration(labelText: "Email"),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (email) =>
+                                    ValidationService().validateEmail(email!))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 3.0,
+                              )),
+                          child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: TextFormField(
+                                controller: passwordController,
+                                obscureText: true,
+                                textInputAction: TextInputAction.done,
+                                decoration: const InputDecoration(
+                                    labelText: "Password"),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (password) => ValidationService()
+                                    .validatePassword(password!),
+                              )),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: OutlinedButton(
+                              onPressed: () {
+                                final isValid =
+                                    formKey.currentState!.validate();
+                                if (!isValid) return;
+
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    builder: (context) => const Center(
+                                          child: CircularProgressIndicator(),
+                                        ));
+
+                                AuthService().emailSignIn(
+                                    emailController.text.trim(),
+                                    passwordController.text.trim());
+
+                                navigatorKey.currentState!
+                                    .popUntil((route) => route.isFirst);
+                              },
+                              style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(
+                                    color: Colors.black, width: 3),
+                              ),
+                              child: const Text(
+                                "Sign In",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            child: const Text(
+                              'Forgot Password',
+                              style: TextStyle(
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 205, 205, 205),
+                                      content: ForgottenPasswordModal(),
+                                    );
+                                  });
+                            },
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          final isValid = formKey.currentState!.validate();
-                          if (!isValid) return;
-
-                          showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (context) => const Center(
-                                    child: CircularProgressIndicator(),
-                                  ));
-
-                          AuthService().emailSignIn(emailController.text.trim(),
-                              passwordController.text.trim());
-
-                          navigatorKey.currentState!
-                              .popUntil((route) => route.isFirst);
-                        },
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.black, width: 3),
-                        ),
-                        child: const Text(
-                          "Sign In",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      child: const Text(
-                        'Forgot Password',
-                        style: TextStyle(
-                          color: Colors.black,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const AlertDialog(
-                                backgroundColor:
-                                    Color.fromARGB(255, 205, 205, 205),
-                                content: ForgottenPasswordModal(),
-                              );
-                            });
-                      },
-                    )
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
-          const Divider(
-            color: Colors.black,
-          ),
-          Headline(
-            data: 'Or',
-            color: themeGrey,
-          ),
-          const LoginButtons(),
-          const Divider(color: Colors.black),
+          LoginButtons(),
           Center(
             heightFactor: 2,
             child: RichText(
@@ -174,8 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ])),
+          ),
+          Spacer(
+            flex: 2,
           )
-        ]),
+        ],
       ),
     );
   }

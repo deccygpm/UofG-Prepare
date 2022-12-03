@@ -16,9 +16,7 @@ class LoginButtons extends StatelessWidget {
       child: Column(
         children: [
           SignInButtonBuilder(
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 3, color: Colors.black),
-                borderRadius: BorderRadius.circular(3)),
+            elevation: 2,
             backgroundColor: Colors.white,
             onPressed: () => AuthService().guestLogin(),
             text: 'Continue as Guest',
@@ -28,16 +26,10 @@ class LoginButtons extends StatelessWidget {
             textColor: Colors.black,
           ),
           SignInButton(Buttons.Google,
-              shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.black, width: 3),
-                  borderRadius: BorderRadius.circular(3)),
-              onPressed: () => AuthService().googleLogin()),
+              elevation: 2, onPressed: () => AuthService().googleLogin()),
           if (Platform.isIOS)
             SignInButton(Buttons.Apple,
-                shape: RoundedRectangleBorder(
-                    side: const BorderSide(color: Colors.black, width: 3),
-                    borderRadius: BorderRadius.circular(3)),
-                onPressed: () => AuthService().signInWithApple()),
+                elevation: 2, onPressed: () => AuthService().signInWithApple()),
         ],
       ),
     );
