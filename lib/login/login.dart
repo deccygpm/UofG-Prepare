@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:l2_transition/login/forgot_password.dart';
 import 'package:l2_transition/login/login_buttons.dart';
@@ -10,10 +9,9 @@ import 'package:l2_transition/theme.dart';
 import '../services/auth.dart';
 
 class LoginScreen extends StatefulWidget {
-  final VoidCallback onClickedSignUp;
+  final PageController controller;
 
-  const LoginScreen({Key? key, required this.onClickedSignUp})
-      : super(key: key);
+  const LoginScreen({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -34,10 +32,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
       body: Column(
         children: [
-          const Spacer(),
+          const SizedBox(
+            height: 100,
+          ),
           Container(
             margin: const EdgeInsets.all(10),
             color: Colors.transparent,
@@ -174,25 +173,22 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const LoginButtons(),
-          Center(
-            heightFactor: 2,
-            child: RichText(
-                text: TextSpan(
-                    text: "Don't have an account? ",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: themeBlue),
-                    children: [
-                  TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = widget.onClickedSignUp,
-                    text: "Click here to Register",
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.underline,
-                      color: themeBlue,
-                    ),
-                  ),
-                ])),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Don't have an account? ",
+                style: TextStyle(fontWeight: FontWeight.bold, color: themeBlue),
+              ),
+              TextButton(
+                  style: TextButton.styleFrom(foregroundColor: themeBlue),
+                  onPressed: () {
+                    widget.controller.animateToPage(1,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.fastLinearToSlowEaseIn);
+                  },
+                  child: const Text("Click here to register"))
+            ],
           ),
           const Spacer(
             flex: 2,
