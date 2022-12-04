@@ -67,11 +67,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Widget build(BuildContext context) => isVerified
       ? SelectionScreen()
       : Scaffold(
-          appBar: CustomAppBar(),
+          appBar: const CustomAppBar(),
           body: Column(children: [
-            Spacer(),
+            const Spacer(),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              margin: const EdgeInsets.only(left: 10, right: 10),
               color: Colors.transparent,
               child: Container(
                 decoration: BoxDecoration(
@@ -86,7 +86,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   border: Border.all(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                margin: EdgeInsets.only(left: 10, right: 10),
+                margin: const EdgeInsets.only(left: 10, right: 10),
                 child: Column(children: [
                   Headline(data: "Verify Email", color: themeGrey),
                   Padding(
@@ -99,7 +99,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   ),
                   Center(
                     child: OutlinedButton(
-                      onPressed: () => canResendEmail ? emailResend() : null,
+                      onPressed: () => canResendEmail
+                          ? emailResend()
+                          : {
+                              Utils.showErrorAlert(
+                                  'A verification email was already sent in the last minute. Please wait before clicking resend again.')
+                            },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: Colors.white,
                         side: const BorderSide(color: Colors.black, width: 3),
