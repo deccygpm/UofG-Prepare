@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/services/auth.dart';
+import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/shared/shared.dart';
 
 class SelectionScreen extends StatelessWidget {
@@ -8,7 +9,11 @@ class SelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        appBar: CustomAppBar(), body: Center(child: Text("selection page")));
+    return Scaffold(
+        appBar: CustomAppBar(),
+        body: Center(
+            child: ElevatedButton(
+                onPressed: () => FirestoreService().getCurrentUser(),
+                child: Text("test"))));
   }
 }
