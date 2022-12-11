@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:l2_transition/services/firestore.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../shared/utils.dart';
@@ -15,41 +16,24 @@ class AuthService {
   Future<void> guestLogin() async {
     try {
       await FirebaseAuth.instance.signInAnonymously();
-    } on FirebaseAuthException catch (e) {
-      Utils.showErrorAlert(e.message);
-    }
-  }
-
-  Future<void> sendVerificationEmail() async {
-    try {
-      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
-    } on FirebaseAuthException catch (e) {
-      Utils.showErrorAlert(e.message);
-    }
-  }
-
-  Future<void> forgottenPassword(email) async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      Utils.showSuccessAlert(
-          'Please check your email for instructions to reset your password.\n\nRemember to check your spam folder.');
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Utils.showErrorAlert("No account found with this email address.");
-      } else {
-        Utils.showErrorAlert(e.message);
+      if (await FirestoreService().userDocExists() == false) {
+        String? uid = FirebaseAuth.instance.currentUser!.uid;
+        FirestoreService().addUser(uid, '', '', '');
       }
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
     }
   }
 
-  Future<void> logOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
-
-  Future<void> emailSignUp(String email, String password) async {
+  Future<void> emailSignUp(
+      String email, String password, String firstName, String lastName) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      if (await FirestoreService().userDocExists() == false) {
+        String? uid = FirebaseAuth.instance.currentUser!.uid;
+        FirestoreService().addUser(uid, firstName, lastName, email);
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         Utils.showErrorAlert(
@@ -77,6 +61,8 @@ class AuthService {
     }
   }
 
+  //Sign in with Google and creates
+  //a user profile in the database if it is their first login.
   Future<void> googleLogin() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
@@ -87,6 +73,16 @@ class AuthService {
         idToken: googleAuth.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(authCredential);
+
+      if (await FirestoreService().userDocExists() == false) {
+        String? name = FirebaseAuth.instance.currentUser!.displayName;
+        List<String> fullName = name!.split(' ');
+        String firstName = fullName[0];
+        String lastName = fullName[1];
+        String? email = FirebaseAuth.instance.currentUser!.email;
+        String? uid = FirebaseAuth.instance.currentUser!.uid;
+        FirestoreService().addUser(uid, firstName, lastName, email!);
+      }
     } on FirebaseAuthException catch (e) {
       Utils.showErrorAlert(e.message);
     }
@@ -123,6 +119,46 @@ class AuthService {
       );
 
       await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+
+      if (await FirestoreService().userDocExists() == false) {
+        String? uid = FirebaseAuth.instance.currentUser!.uid;
+        FirestoreService().addUser(uid, appleCredential.givenName!,
+            appleCredential.familyName!, appleCredential.email!);
+      }
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
+    }
+  }
+
+  Future<void> sendVerificationEmail() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
+    }
+  }
+
+  Future<void> forgottenPassword(email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      Utils.showSuccessAlert(
+          'Please check your email for instructions to reset your password.\n\nRemember to check your spam folder.');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Utils.showErrorAlert("No account found with this email address.");
+      } else {
+        Utils.showErrorAlert(e.message);
+      }
+    }
+  }
+
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  Future<void> deleteUser() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.delete();
     } on FirebaseAuthException catch (e) {
       Utils.showErrorAlert(e.message);
     }
