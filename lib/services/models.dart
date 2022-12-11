@@ -22,8 +22,8 @@ class AppUser {
 
 @JsonSerializable()
 class Section {
-  final String name;
   final String icon;
+  final String name;
 
   Section({
     this.icon = '',
@@ -37,12 +37,12 @@ class Section {
 
 @JsonSerializable()
 class School {
-  final String fullName;
   final List<Section> sections;
+  final String fullName;
 
   School({
-    this.fullName = '',
     this.sections = const [],
+    this.fullName = '',
   });
 
   factory School.fromJson(Map<String, dynamic> json) => _$SchoolFromJson(json);

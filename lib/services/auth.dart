@@ -25,10 +25,15 @@ class AuthService {
     }
   }
 
-  Future<void> emailSignUp(String email, String password) async {
+  Future<void> emailSignUp(
+      String email, String password, String firstName, String lastName) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      if (await FirestoreService().userDocExists() == false) {
+        String? uid = FirebaseAuth.instance.currentUser!.uid;
+        FirestoreService().addUser(uid, firstName, lastName, email);
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         Utils.showErrorAlert(

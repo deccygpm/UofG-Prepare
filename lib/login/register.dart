@@ -16,6 +16,8 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final formKey = GlobalKey<FormState>();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordMatchController = TextEditingController();
@@ -38,6 +40,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         _RegisterForm(
             formKey: formKey,
+            firstNameController: firstNameController,
+            lastNameController: lastNameController,
             emailController: emailController,
             passwordController: passwordController,
             passwordMatchController: passwordMatchController),
@@ -52,12 +56,16 @@ class _RegisterForm extends StatelessWidget {
   const _RegisterForm({
     Key? key,
     required this.formKey,
+    required this.firstNameController,
+    required this.lastNameController,
     required this.emailController,
     required this.passwordController,
     required this.passwordMatchController,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController passwordMatchController;
@@ -105,18 +113,62 @@ class _RegisterForm extends StatelessWidget {
                         width: 3.0,
                       )),
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: TextFormField(
-                          controller: emailController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(labelText: "Email"),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (email) =>
-                              ValidationService().validateEmail(email!))),
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextFormField(
+                      controller: firstNameController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration:
+                          const InputDecoration(labelText: "First Name"),
+                    ),
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: themeGrey,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 3.0,
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: TextFormField(
+                        controller: firstNameController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration:
+                            const InputDecoration(labelText: "Last Name"),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: themeGrey,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 3.0,
+                        )),
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: TextFormField(
+                            controller: emailController,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration:
+                                const InputDecoration(labelText: "Email"),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (email) =>
+                                ValidationService().validateEmail(email!))),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
                   child: Container(
                     decoration: BoxDecoration(
                         color: themeGrey,
@@ -139,7 +191,7 @@ class _RegisterForm extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 5),
                   child: Container(
                     decoration: BoxDecoration(
                         color: themeGrey,
@@ -154,7 +206,7 @@ class _RegisterForm extends StatelessWidget {
                             obscureText: true,
                             textInputAction: TextInputAction.done,
                             decoration: const InputDecoration(
-                                labelText: "Repeat Password"),
+                                labelText: "Confirm Password"),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: (repeatedPassword) => ValidationService()
@@ -176,8 +228,11 @@ class _RegisterForm extends StatelessWidget {
                                 child: CircularProgressIndicator(),
                               ));
 
-                      AuthService().emailSignUp(emailController.text.trim(),
-                          passwordController.text.trim());
+                      AuthService().emailSignUp(
+                          emailController.text.trim(),
+                          passwordController.text.trim(),
+                          firstNameController.text.trim(),
+                          lastNameController.text.trim());
 
                       navigatorKey.currentState!.pop();
                     },

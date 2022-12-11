@@ -26,19 +26,19 @@ Section _$SectionFromJson(Map<String, dynamic> json) => Section(
     );
 
 Map<String, dynamic> _$SectionToJson(Section instance) => <String, dynamic>{
-      'name': instance.name,
       'icon': instance.icon,
+      'name': instance.name,
     };
 
 School _$SchoolFromJson(Map<String, dynamic> json) => School(
-      fullName: json['fullName'] as String? ?? '',
       sections: (json['sections'] as List<dynamic>?)
               ?.map((e) => Section.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      fullName: json['fullName'] as String? ?? '',
     );
 
 Map<String, dynamic> _$SchoolToJson(School instance) => <String, dynamic>{
-      'fullName': instance.fullName,
       'sections': instance.sections,
+      'fullName': instance.fullName,
     };
