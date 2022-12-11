@@ -155,4 +155,12 @@ class AuthService {
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
   }
+
+  Future<void> deleteUser() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
+    }
+  }
 }
