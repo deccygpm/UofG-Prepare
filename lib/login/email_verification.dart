@@ -65,7 +65,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) => isVerified
-      ? SelectionScreen()
+      ? const SelectionScreen()
       : Scaffold(
           appBar: const CustomAppBar(),
           body: Column(children: [

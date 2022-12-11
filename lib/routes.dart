@@ -4,6 +4,6 @@ import 'package:l2_transition/selection/selection.dart';
 
 var appRoutes = {
   '/': (context) => const Home(),
-  '/selection': (context) => SelectionScreen(),
+  '/selection': (context) => const SelectionScreen(),
   '/profile': (context) => const UserProfilePage(),
 };
