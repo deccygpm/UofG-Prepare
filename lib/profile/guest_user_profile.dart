@@ -21,7 +21,7 @@ class GuestUserProfileScreen extends StatelessWidget {
                 child: Column(
               children: [
                 Headline(data: "Hi, Guest", color: themeBlue),
-                Text(
+                const Text(
                     "If you want the full experience of this app, please sign out and register a full account."),
                 Image.asset(
                   'assets/image/uofg-logo-large.jpg',
