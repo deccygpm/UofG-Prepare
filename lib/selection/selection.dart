@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/services/firestore.dart';
+import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
 
@@ -25,7 +26,12 @@ class SelectionScreen extends StatelessWidget {
               appBar: const CustomAppBar(),
               body: ListView.separated(
                   itemBuilder: (context, index) {
-                    return Text(schools[index].fullName);
+                    return ListTile(
+                      title: Text(schools[index].fullName),
+                      onTap: () {
+                        LocalData().setSchool(schools[index].id);
+                      },
+                    );
                   },
                   separatorBuilder: (context, index) => const Divider(),
                   itemCount: schools!.length),

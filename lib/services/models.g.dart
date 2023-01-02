@@ -36,9 +36,11 @@ School _$SchoolFromJson(Map<String, dynamic> json) => School(
               .toList() ??
           const [],
       fullName: json['fullName'] as String? ?? '',
+      id: json['id'] as String? ?? '',
     );
 
 Map<String, dynamic> _$SchoolToJson(School instance) => <String, dynamic>{
       'sections': instance.sections,
       'fullName': instance.fullName,
+      'id': instance.id,
     };
