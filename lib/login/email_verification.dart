@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:l2_transition/selection/selection.dart';
+import 'package:l2_transition/selection/selection_wrapper.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/shared/utils.dart';
@@ -65,7 +65,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) => isVerified
-      ? const SelectionScreen()
+      ? const SelectionWrapper()
       : Scaffold(
           appBar: const CustomAppBar(),
           body: Column(children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:l2_transition/services/auth.dart';
+import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/theme.dart';
@@ -30,6 +31,7 @@ class GuestUserProfileScreen extends StatelessWidget {
                 SignInButtonBuilder(
                   backgroundColor: Colors.white,
                   onPressed: () async {
+                    LocalData().clearAll();
                     AuthService().logOut();
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/', (route) => false);

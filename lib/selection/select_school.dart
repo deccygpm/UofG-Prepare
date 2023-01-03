@@ -4,8 +4,8 @@ import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
 
-class SelectionScreen extends StatelessWidget {
-  const SelectionScreen({
+class SelectSchoolScreen extends StatelessWidget {
+  const SelectSchoolScreen({
     super.key,
   });
 
@@ -30,6 +30,8 @@ class SelectionScreen extends StatelessWidget {
                       title: Text(schools[index].fullName),
                       onTap: () {
                         LocalData().setSchool(schools[index].id);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/selection', (route) => false);
                       },
                     );
                   },

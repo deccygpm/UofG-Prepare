@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/login/auth_wrapper.dart';
 import 'package:l2_transition/login/email_verification.dart';
-import 'package:l2_transition/selection/selection.dart';
+import 'package:l2_transition/selection/selection_wrapper.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/shared/loading.dart';
 
@@ -19,11 +19,11 @@ class Home extends StatelessWidget {
             return const Text("error");
           } else if (snapshot.hasData) {
             if (snapshot.data!.email == null) {
-              return const SelectionScreen();
+              return const SelectionWrapper();
             } else if (!snapshot.data!.emailVerified) {
               return const EmailVerificationScreen();
             } else {
-              return const SelectionScreen();
+              return const SelectionWrapper();
             }
           } else {
             return const AuthScreen();
