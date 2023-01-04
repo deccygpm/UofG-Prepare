@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:l2_transition/selection/selection_wrapper.dart';
+import 'package:l2_transition/body/body_wrapper.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/shared/utils.dart';

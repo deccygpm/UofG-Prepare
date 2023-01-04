@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/login/auth_wrapper.dart';
 import 'package:l2_transition/login/email_verification.dart';
-import 'package:l2_transition/selection/selection_wrapper.dart';
+import 'package:l2_transition/body/body_wrapper.dart';
 import 'package:l2_transition/services/auth.dart';
 import 'package:l2_transition/shared/loading.dart';
 

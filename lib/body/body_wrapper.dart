@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/selection/select_school.dart';
-import 'package:l2_transition/selection/select_section.dart';
-import 'package:l2_transition/services/firestore.dart';
+import 'package:l2_transition/body/select_school.dart';
+import 'package:l2_transition/body/body.dart';
 import 'package:l2_transition/services/local_data.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
 
 class SelectionWrapper extends StatelessWidget {
   const SelectionWrapper({
@@ -17,9 +14,9 @@ class SelectionWrapper extends StatelessWidget {
         future: LocalData().isSchoolSet(),
         builder: ((context, snapshot) {
           if (snapshot.data == true) {
-            return SelectSectionScreen();
+            return const SelectSectionScreen();
           } else {
-            return SelectSchoolScreen();
+            return const SelectSchoolScreen();
           }
         }));
   }
