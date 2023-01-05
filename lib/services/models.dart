@@ -39,10 +39,12 @@ class Section {
 class School {
   final List<Section> sections;
   final String fullName;
+  final String id;
 
   School({
     this.sections = const [],
     this.fullName = '',
+    this.id = '',
   });
 
   factory School.fromJson(Map<String, dynamic> json) => _$SchoolFromJson(json);

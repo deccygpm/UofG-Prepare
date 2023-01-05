@@ -15,6 +15,12 @@ class FirestoreService {
     return schools.toList();
   }
 
+  Future<School> getSchool(school) async {
+    var ref = _db.collection('schools').doc(school);
+    var snapshot = await ref.get();
+    return School.fromJson(snapshot.data() ?? {});
+  }
+
   Future<List<AppUser>> getUsers() async {
     var ref = _db.collection('users');
     var snapshot = await ref.get();
