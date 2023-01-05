@@ -33,9 +33,14 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                       ),
                       itemCount: sections.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          color: Colors.amber,
-                          child: Center(child: Text(sections[index].name)),
+                        return InkWell(
+                          onTap: () {
+                            print('I work');
+                          },
+                          child: Card(
+                            color: Colors.amber,
+                            child: Center(child: Text(sections[index].name)),
+                          ),
                         );
                       });
                 } else {
