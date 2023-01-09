@@ -6,6 +6,8 @@ import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/loading.dart';
 import 'package:l2_transition/shared/utils.dart';
 
+import 'topic_tile.dart';
+
 class StudyTab extends StatefulWidget {
   final Study study;
 
@@ -26,7 +28,9 @@ class _StudyTabState extends State<StudyTab> {
       crossAxisSpacing: 10,
       crossAxisCount: 2,
       children: _study.topics
-          .map((topic) => GridTile(child: Text(Utils().capitalise(topic.name))))
+          .map((topic) => TopicTile(
+                topic: topic,
+              ))
           .toList(),
     );
   }

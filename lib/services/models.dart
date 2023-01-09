@@ -67,12 +67,14 @@ class Study {
 
 @JsonSerializable()
 class Topic {
+  final String image;
   final String name;
   final List<String> content;
 
   Topic({
     this.name = '',
     this.content = const [],
+    this.image = '',
   });
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
