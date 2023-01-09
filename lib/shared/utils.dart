@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
+  String capitalise(String text) {
+    return "${text[0].toUpperCase()}${text.substring(1)}";
+  }
+
   static showErrorAlert(String? text) {
     if (text == null) return;
     final alert = SnackBar(

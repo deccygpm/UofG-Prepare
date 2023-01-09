@@ -3,7 +3,6 @@ import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/loading.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PrepareMenuScreen extends StatefulWidget {
   const PrepareMenuScreen({super.key});

@@ -3,6 +3,7 @@ import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
+import 'package:l2_transition/shared/utils.dart';
 
 class SelectSchoolScreen extends StatelessWidget {
   const SelectSchoolScreen({
@@ -17,8 +18,9 @@ class SelectSchoolScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingScreen();
           } else if (snapshot.hasError) {
-            print(snapshot.error);
-            return const Text("error");
+            return Center(
+              child: Utils.showErrorAlert(snapshot.error.toString()),
+            );
           } else if (snapshot.hasData) {
             List<School>? schools = snapshot.data;
 
@@ -39,7 +41,7 @@ class SelectSchoolScreen extends StatelessWidget {
                   itemCount: schools!.length),
             );
           } else {
-            return const Text('idfk');
+            return const Text('Database Problem');
           }
         }));
   }

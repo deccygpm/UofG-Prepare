@@ -44,3 +44,27 @@ Map<String, dynamic> _$SchoolToJson(School instance) => <String, dynamic>{
       'fullName': instance.fullName,
       'id': instance.id,
     };
+
+Study _$StudyFromJson(Map<String, dynamic> json) => Study(
+      topics: (json['topics'] as List<dynamic>?)
+              ?.map((e) => Topic.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
+      'topics': instance.topics,
+    };
+
+Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
+      name: json['name'] as String? ?? '',
+      content: (json['content'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
+      'name': instance.name,
+      'content': instance.content,
+    };
