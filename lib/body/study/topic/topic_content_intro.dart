@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:l2_transition/body/study/topic/topic_content_body.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/theme.dart';
@@ -10,6 +11,36 @@ class TopicIntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: themeBlue,
+          child: Text('Start'),
+          onPressed: (() {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => LayoutBuilder(
+                builder: (context, constraints) {
+                  return AlertDialog(
+                    elevation: 10,
+                    backgroundColor: themeGrey,
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: constraints.maxHeight * .5,
+                          width: constraints.maxWidth,
+                          child: TopicContentScreen(
+                            content: topic.content,
+                            quiz: topic.quiz,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            );
+          }),
+        ),
         appBar: CustomAppBar(),
         body: ListView(
           children: [
@@ -17,7 +48,7 @@ class TopicIntroScreen extends StatelessWidget {
               tag: topic.name,
               child: Image.asset(
                 topic.image,
-                width: MediaQuery.of(context).size.width / 2,
+                width: MediaQuery.of(context).size.width,
               ),
             ),
             Center(
@@ -35,24 +66,6 @@ class TopicIntroScreen extends StatelessWidget {
               child: FancyText(data: topic.intro.content),
             ),
             Image.asset(topic.intro.image),
-            ListView.separated(
-                separatorBuilder: (context, index) {
-                  return Divider(
-                    color: themeBlue,
-                    indent: 10,
-                    endIndent: 10,
-                  );
-                },
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: topic.content.length,
-                itemBuilder: ((context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.only(left: 12, right: 12),
-                      child: FancyText(
-                        data: topic.content[index],
-                      ));
-                }))
           ],
         ));
   }
