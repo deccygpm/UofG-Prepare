@@ -94,8 +94,8 @@ Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
 
 Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
       name: json['name'] as String? ?? '',
-      content: (json['content'] as List<dynamic>?)
-              ?.map((e) => e as String)
+      contents: (json['contents'] as List<dynamic>?)
+              ?.map((e) => Block.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       image: json['image'] as String? ?? '',
@@ -110,7 +110,7 @@ Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
 Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
       'image': instance.image,
       'name': instance.name,
-      'content': instance.content,
+      'contents': instance.contents,
       'quiz': instance.quiz,
       'intro': instance.intro,
     };
@@ -122,5 +122,17 @@ Intro _$IntroFromJson(Map<String, dynamic> json) => Intro(
 
 Map<String, dynamic> _$IntroToJson(Intro instance) => <String, dynamic>{
       'content': instance.content,
+      'image': instance.image,
+    };
+
+Block _$BlockFromJson(Map<String, dynamic> json) => Block(
+      body: json['body'] as String? ?? '',
+      headline: json['headline'] as String? ?? '',
+      image: json['image'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$BlockToJson(Block instance) => <String, dynamic>{
+      'body': instance.body,
+      'headline': instance.headline,
       'image': instance.image,
     };

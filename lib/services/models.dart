@@ -110,13 +110,13 @@ class Study {
 class Topic {
   final String image;
   final String name;
-  final List<String> content;
+  final List<Block> contents;
   final Quiz quiz;
   final Intro intro;
 
   Topic({
     this.name = '',
-    this.content = const [],
+    this.contents = const [],
     this.image = '',
     this.quiz = const Quiz(),
     this.intro = const Intro(),
@@ -138,4 +138,20 @@ class Intro {
 
   factory Intro.fromJson(Map<String, dynamic> json) => _$IntroFromJson(json);
   Map<String, dynamic> toJson() => _$IntroToJson(this);
+}
+
+@JsonSerializable()
+class Block {
+  final String body;
+  final String headline;
+  final String image;
+
+  const Block({
+    this.body = '',
+    this.headline = '',
+    this.image = '',
+  });
+
+  factory Block.fromJson(Map<String, dynamic> json) => _$BlockFromJson(json);
+  Map<String, dynamic> toJson() => _$BlockToJson(this);
 }

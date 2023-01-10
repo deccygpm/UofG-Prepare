@@ -15,30 +15,12 @@ class TopicIntroScreen extends StatelessWidget {
           backgroundColor: themeBlue,
           child: Text('Start'),
           onPressed: (() {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => LayoutBuilder(
-                builder: (context, constraints) {
-                  return AlertDialog(
-                    elevation: 10,
-                    backgroundColor: themeGrey,
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: constraints.maxHeight * .5,
-                          width: constraints.maxWidth,
-                          child: TopicContentScreen(
-                            content: topic.content,
-                            quiz: topic.quiz,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => TopicContentScreen(
+                content: topic.contents,
+                quiz: topic.quiz,
               ),
-            );
+            ));
           }),
         ),
         appBar: CustomAppBar(),

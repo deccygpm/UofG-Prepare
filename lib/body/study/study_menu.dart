@@ -22,8 +22,11 @@ class _StudyMenuScreenState extends State<StudyMenuScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return LoadingScreen();
           } else if (snapshot.hasError) {
-            return Center(
-                child: Utils.showErrorAlert(snapshot.error.toString()));
+            print(snapshot.error);
+
+            return Text('idk');
+            //return Center(
+            //child: Utils.showErrorAlert(snapshot.error.toString()));
           } else if (snapshot.hasData) {
             List<Study> studies = snapshot.data!;
             return DefaultTabController(
