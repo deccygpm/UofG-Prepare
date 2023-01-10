@@ -21,6 +21,41 @@ class AppUser {
 }
 
 @JsonSerializable()
+class Quiz {
+  final List<Question> questions;
+
+  const Quiz({
+    this.questions = const [],
+  });
+
+  factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
+  Map<String, dynamic> toJson() => _$QuizToJson(this);
+}
+
+@JsonSerializable()
+class Question {
+  final List<Option> options;
+  final String question;
+
+  Question({this.options = const [], this.question = ''});
+
+  factory Question.fromJson(Map<String, dynamic> json) =>
+      _$QuestionFromJson(json);
+  Map<String, dynamic> toJson() => _$QuestionToJson(this);
+}
+
+@JsonSerializable()
+class Option {
+  final String value;
+  final bool correct;
+
+  Option({this.value = '', this.correct = false});
+
+  factory Option.fromJson(Map<String, dynamic> json) => _$OptionFromJson(json);
+  Map<String, dynamic> toJson() => _$OptionToJson(this);
+}
+
+@JsonSerializable()
 class Section {
   final String icon;
   final String name;
@@ -70,11 +105,13 @@ class Topic {
   final String image;
   final String name;
   final List<String> content;
+  final Quiz quiz;
 
   Topic({
     this.name = '',
     this.content = const [],
     this.image = '',
+    this.quiz = const Quiz(),
   });
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);

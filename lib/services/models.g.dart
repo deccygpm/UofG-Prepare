@@ -20,6 +20,40 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
     };
 
+Quiz _$QuizFromJson(Map<String, dynamic> json) => Quiz(
+      questions: (json['questions'] as List<dynamic>?)
+              ?.map((e) => Question.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$QuizToJson(Quiz instance) => <String, dynamic>{
+      'questions': instance.questions,
+    };
+
+Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
+      options: (json['options'] as List<dynamic>?)
+              ?.map((e) => Option.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      question: json['question'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
+      'options': instance.options,
+      'question': instance.question,
+    };
+
+Option _$OptionFromJson(Map<String, dynamic> json) => Option(
+      value: json['value'] as String? ?? '',
+      correct: json['correct'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$OptionToJson(Option instance) => <String, dynamic>{
+      'value': instance.value,
+      'correct': instance.correct,
+    };
+
 Section _$SectionFromJson(Map<String, dynamic> json) => Section(
       icon: json['icon'] as String? ?? '',
       name: json['name'] as String? ?? '',
@@ -65,10 +99,14 @@ Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
               .toList() ??
           const [],
       image: json['image'] as String? ?? '',
+      quiz: json['quiz'] == null
+          ? const Quiz()
+          : Quiz.fromJson(json['quiz'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
       'image': instance.image,
       'name': instance.name,
       'content': instance.content,
+      'quiz': instance.quiz,
     };

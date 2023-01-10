@@ -35,6 +35,7 @@ class _StudyMenuScreenState extends State<StudyMenuScreen> {
                     Material(
                       color: themeBlue,
                       child: const TabBar(
+                        labelStyle: TextStyle(height: 1.5),
                         indicatorColor: Colors.transparent,
                         tabs: [
                           Tab(
