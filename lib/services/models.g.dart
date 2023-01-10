@@ -102,6 +102,9 @@ Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
       quiz: json['quiz'] == null
           ? const Quiz()
           : Quiz.fromJson(json['quiz'] as Map<String, dynamic>),
+      intro: json['intro'] == null
+          ? const Intro()
+          : Intro.fromJson(json['intro'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
@@ -109,4 +112,15 @@ Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
       'name': instance.name,
       'content': instance.content,
       'quiz': instance.quiz,
+      'intro': instance.intro,
+    };
+
+Intro _$IntroFromJson(Map<String, dynamic> json) => Intro(
+      content: json['content'] as String? ?? '',
+      image: json['image'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$IntroToJson(Intro instance) => <String, dynamic>{
+      'content': instance.content,
+      'image': instance.image,
     };

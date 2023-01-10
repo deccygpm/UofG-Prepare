@@ -37,7 +37,10 @@ class Question {
   final List<Option> options;
   final String question;
 
-  Question({this.options = const [], this.question = ''});
+  Question({
+    this.options = const [],
+    this.question = '',
+  });
 
   factory Question.fromJson(Map<String, dynamic> json) =>
       _$QuestionFromJson(json);
@@ -49,7 +52,10 @@ class Option {
   final String value;
   final bool correct;
 
-  Option({this.value = '', this.correct = false});
+  Option({
+    this.value = '',
+    this.correct = false,
+  });
 
   factory Option.fromJson(Map<String, dynamic> json) => _$OptionFromJson(json);
   Map<String, dynamic> toJson() => _$OptionToJson(this);
@@ -106,14 +112,30 @@ class Topic {
   final String name;
   final List<String> content;
   final Quiz quiz;
+  final Intro intro;
 
   Topic({
     this.name = '',
     this.content = const [],
     this.image = '',
     this.quiz = const Quiz(),
+    this.intro = const Intro(),
   });
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
   Map<String, dynamic> toJson() => _$TopicToJson(this);
+}
+
+@JsonSerializable()
+class Intro {
+  final String content;
+  final String image;
+
+  const Intro({
+    this.content = '',
+    this.image = '',
+  });
+
+  factory Intro.fromJson(Map<String, dynamic> json) => _$IntroFromJson(json);
+  Map<String, dynamic> toJson() => _$IntroToJson(this);
 }

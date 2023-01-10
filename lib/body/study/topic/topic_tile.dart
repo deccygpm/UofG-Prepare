@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/topic_content.dart';
+import 'package:l2_transition/body/study/topic/topic_content_intro.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/utils.dart';
 import 'package:l2_transition/theme.dart';
@@ -20,7 +20,7 @@ class TopicTile extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      TopicContentScreen(topic: topic),
+                      TopicIntroScreen(topic: topic),
                 ),
               );
             },

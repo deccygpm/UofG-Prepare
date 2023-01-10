@@ -7,7 +7,7 @@ import 'package:l2_transition/shared/loading.dart';
 import 'package:l2_transition/shared/utils.dart';
 import 'package:l2_transition/theme.dart';
 
-import 'topic_tile.dart';
+import 'topic/topic_tile.dart';
 
 class StudyTab extends StatefulWidget {
   final Study study;
