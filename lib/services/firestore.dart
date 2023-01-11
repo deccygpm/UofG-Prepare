@@ -7,12 +7,51 @@ import 'package:l2_transition/services/models.dart';
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  Stream<Report> streamReport() {
+    return AuthService().userStream.switchMap((user) {
+      if (user != null) {
+        var ref = _db.collection('reports').doc(user.uid);
+        return ref.snapshots().map((doc) => Report.fromJson(doc.data()!));
+      } else {
+        return Stream.fromIterable([Report()]);
+      }
+    });
+  }
+
+  Future<void> updateUserReport(Quiz quiz) {
+    var user = AuthService().user!;
+    var ref = _db.collection('reports').doc(user.uid);
+
+    var data = {
+      'total': FieldValue.increment(1),
+      'quizes': {
+        quiz.id: FieldValue.arrayUnion([quiz.id])
+      }
+    };
+
+    return ref.set(data, SetOptions(merge: true));
+  }
+
   Future<List<School>> getSchools() async {
     var ref = _db.collection('schools');
     var snapshot = await ref.get();
     var data = snapshot.docs.map((s) => s.data());
     var schools = data.map((d) => School.fromJson(d));
     return schools.toList();
+  }
+
+  Future<List<Study>> getAllStudySections() async {
+    var ref = _db.collection('study');
+    var snapshot = await ref.get();
+    var data = snapshot.docs.map((s) => s.data());
+    var sections = data.map((d) => Study.fromJson(d));
+    return sections.toList();
+  }
+
+  Future<Study> getStudySection(String section) async {
+    var ref = _db.collection('study').doc(section);
+    var snapshot = await ref.get();
+    return Study.fromJson(snapshot.data() ?? {});
   }
 
   Future<School> getSchool(school) async {
@@ -47,6 +86,16 @@ class FirestoreService {
     };
 
     await _db.collection('users').doc(uid).set(appUser);
+  }
+
+  Future<void> addUserReport(String uid) async {
+    final userReport = {
+      'uid': uid,
+      'total': 0,
+      'quizes': {'quiz-id': '0'}
+    };
+
+    await _db.collection('reports').doc(uid).set(userReport);
   }
 
   Future<AppUser> getCurrentUser() async {

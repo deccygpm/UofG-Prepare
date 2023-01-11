@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:l2_transition/body/prepare/prepare_menu.dart';
 import 'package:l2_transition/shared/app_bar.dart';
 import 'package:l2_transition/body/study/study_menu.dart';
+import 'package:l2_transition/theme.dart';
 
 class SelectSectionScreen extends StatefulWidget {
   const SelectSectionScreen({super.key});
@@ -24,8 +25,10 @@ class _SelectSectionScreenState extends State<SelectSectionScreen> {
         appBar: const CustomAppBar(),
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
+            backgroundColor: themeBlue,
             labelTextStyle: MaterialStateProperty.all(
-              const TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+              TextStyle(
+                  fontWeight: FontWeight.w500, fontSize: 14, color: themeGrey),
             ),
           ),
           child: NavigationBar(
@@ -34,9 +37,17 @@ class _SelectSectionScreenState extends State<SelectSectionScreen> {
                 setState(() => this.index = index),
             destinations: const [
               NavigationDestination(
-                  icon: Icon(Icons.grid_4x4_rounded), label: 'Prepare'),
+                  icon: Icon(
+                    Icons.grid_4x4_rounded,
+                    color: Colors.amber,
+                  ),
+                  label: 'Prepare'),
               NavigationDestination(
-                  icon: Icon(Icons.quiz_rounded), label: 'Study'),
+                  icon: Icon(
+                    Icons.quiz_rounded,
+                    color: Colors.amber,
+                  ),
+                  label: 'Study'),
             ],
           ),
         ),
