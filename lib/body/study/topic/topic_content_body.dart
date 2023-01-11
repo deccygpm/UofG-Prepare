@@ -73,7 +73,10 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
                     child: Stack(
                       fit: StackFit.passthrough,
                       children: <Widget>[
-                        FancyText(data: _content[index].body),
+                        FancyText(
+                          data: _content[index].body,
+                          color: Colors.black,
+                        ),
                         Image.asset(
                           'assets/image/programming/${_content[index].image}',
                           width: MediaQuery.of(context).size.width * 0.7,
