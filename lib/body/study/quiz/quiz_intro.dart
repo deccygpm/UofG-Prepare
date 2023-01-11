@@ -15,30 +15,46 @@ class QuizIntroScreen extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (_) => QuizState(),
         child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Headline(
-                  data: '${Utils().capitalise(name)} Quiz', color: themeBlue),
-              Expanded(
-                child: Text(
-                    'You are about to take a quiz about ${Utils().capitalise(name)}. Click Start to get going or click Cancel to look at a different topic'),
-              ),
-              ButtonBar(
-                alignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                        context, '/selection', (route) => false),
-                    child: const Text('Cancel'),
-                  ),
-                  ElevatedButton(
-                    onPressed: state.nextPage,
-                    child: const Text('Start'),
-                  ),
-                ],
-              ),
-            ],
+          color: themeBlue,
+          padding: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.4),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                ),
+              ],
+              color: themeGrey,
+              border: Border.all(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: [
+                Headline(
+                    data: '${Utils().capitalise(name)} Quiz', color: themeBlue),
+                Expanded(
+                  child: Text(
+                      'You are about to take a quiz about ${Utils().capitalise(name)}. Click Start to get going or click Cancel to look at a different topic'),
+                ),
+                ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                          context, '/selection', (route) => false),
+                      child: const Text('Cancel'),
+                    ),
+                    ElevatedButton(
+                      onPressed: state.nextPage,
+                      child: const Text('Start'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ));
   }

@@ -4,6 +4,8 @@ import 'package:l2_transition/body/study/quiz/quiz_intro.dart';
 import 'package:l2_transition/body/study/quiz/quiz_question.dart';
 import 'package:l2_transition/body/study/quiz/quiz_state.dart';
 import 'package:l2_transition/services/models.dart';
+import 'package:l2_transition/shared/shared.dart';
+import 'package:l2_transition/theme.dart';
 import 'package:provider/provider.dart';
 
 class QuizScreen extends StatelessWidget {
@@ -18,7 +20,12 @@ class QuizScreen extends StatelessWidget {
         builder: ((context, child) {
           var state = Provider.of<QuizState>(context);
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              backgroundColor: themeBlue,
+              shadowColor: Colors.transparent,
+              title: ProgressBar(value: state.progress),
+              automaticallyImplyLeading: false,
+            ),
             body: PageView.builder(
                 controller: state.controller,
                 physics: const NeverScrollableScrollPhysics(),

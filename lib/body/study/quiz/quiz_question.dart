@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/body/study/quiz/quiz_state.dart';
 import 'package:l2_transition/services/models.dart';
+import 'package:l2_transition/shared/sub_headline.dart';
 import 'package:l2_transition/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,13 @@ class QuizQuestionScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(20),
             alignment: Alignment.center,
-            child: Text(question.question),
+            child: Column(
+              children: [
+                Image.asset(
+                    'assets/image/illustrations/project_manager/twelve.png'),
+                SubHeadline(data: 'Q: ${question.question}'),
+              ],
+            ),
           ),
         ),
         Container(
@@ -51,7 +58,8 @@ class QuizQuestionScreen extends StatelessWidget {
                                 margin: const EdgeInsets.only(left: 15),
                                 child: Text(
                                   option.value,
-                                  style: TextStyle(color: themeGrey),
+                                  style:
+                                      TextStyle(color: themeGrey, fontSize: 16),
                                 ),
                               ),
                             ),
@@ -77,9 +85,12 @@ class QuizQuestionScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(correct
-                      ? "That's right, well done!"
-                      : "Incorrect, try again"),
+                  Text(
+                    correct
+                        ? "That's right, well done!"
+                        : "Incorrect, try again",
+                    style: TextStyle(fontSize: 18),
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: correct ? Colors.green : Colors.red),
