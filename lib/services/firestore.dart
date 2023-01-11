@@ -7,6 +7,17 @@ import 'package:l2_transition/services/models.dart';
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  Stream<Report> streamReport() {
+    return AuthService().userStream.switchMap((user) {
+      if (user != null) {
+        var ref = _db.collection('reports').doc(user.uid);
+        return ref.snapshots().map((doc) => Report.fromJson(doc.data()!));
+      } else {
+        return Stream.fromIterable([Report()]);
+      }
+    });
+  }
+
   Future<List<School>> getSchools() async {
     var ref = _db.collection('schools');
     var snapshot = await ref.get();
@@ -61,6 +72,16 @@ class FirestoreService {
     };
 
     await _db.collection('users').doc(uid).set(appUser);
+  }
+
+  Future<void> addUserReport(String uid) async {
+    final userReport = {
+      'uid': uid,
+      'total': 0,
+      'quizes': {'quiz-id': '0'}
+    };
+
+    await _db.collection('reports').doc(uid).set(userReport);
   }
 
   Future<AppUser> getCurrentUser() async {

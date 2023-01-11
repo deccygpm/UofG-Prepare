@@ -19,6 +19,7 @@ class TopicIntroScreen extends StatelessWidget {
               builder: (context) => TopicContentScreen(
                 content: topic.contents,
                 quiz: topic.quiz,
+                name: topic.name,
               ),
             ));
           }),

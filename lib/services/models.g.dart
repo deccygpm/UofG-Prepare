@@ -20,15 +20,29 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
     };
 
+Report _$ReportFromJson(Map<String, dynamic> json) => Report(
+      uid: json['uid'] as String? ?? '',
+      total: json['total'] as int? ?? 0,
+      quizes: json['quizes'] as Map<String, dynamic>? ?? const {},
+    );
+
+Map<String, dynamic> _$ReportToJson(Report instance) => <String, dynamic>{
+      'uid': instance.uid,
+      'total': instance.total,
+      'quizes': instance.quizes,
+    };
+
 Quiz _$QuizFromJson(Map<String, dynamic> json) => Quiz(
       questions: (json['questions'] as List<dynamic>?)
               ?.map((e) => Question.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      id: json['id'] as String? ?? '',
     );
 
 Map<String, dynamic> _$QuizToJson(Quiz instance) => <String, dynamic>{
       'questions': instance.questions,
+      'id': instance.id,
     };
 
 Question _$QuestionFromJson(Map<String, dynamic> json) => Question(

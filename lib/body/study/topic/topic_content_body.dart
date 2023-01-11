@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/topic/topic_quiz.dart';
+import 'package:l2_transition/body/study/quiz/quiz.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/theme.dart';
@@ -8,11 +8,13 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class TopicContentScreen extends StatefulWidget {
   final List<Block> content;
   final Quiz quiz;
+  final String name;
 
   const TopicContentScreen({
     super.key,
     required this.content,
     required this.quiz,
+    required this.name,
   });
 
   @override
@@ -25,6 +27,7 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
 
   late final List<Block> _content = widget.content;
   late final Quiz _quiz = widget.quiz;
+  late final String _name = widget.name;
   @override
   Widget build(BuildContext context) {
     PageController controller = PageController();
@@ -44,22 +47,41 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
             itemCount: _content.length,
             itemBuilder: ((context, index) {
               return Center(
-                  child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.4),
-                      spreadRadius: 2,
-                      blurRadius: 3,
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Headline(
+                        data: _content[index].headline, color: themeGrey),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.4),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                        ),
+                      ],
+                      color: themeGrey,
+                      border: Border.all(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  ],
-                  color: themeGrey,
-                  border: Border.all(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                height: MediaQuery.of(context).size.height * .6,
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: FancyText(data: _content[index].body),
+                    height: MediaQuery.of(context).size.height * .6,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Stack(
+                      fit: StackFit.passthrough,
+                      children: <Widget>[
+                        FancyText(data: _content[index].body),
+                        Image.asset(
+                          'assets/image/programming/${_content[index].image}',
+                          width: MediaQuery.of(context).size.width * 0.7,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ));
             }),
           ),
@@ -102,7 +124,10 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
                     ? GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => TopicQuizScreen(quiz: _quiz),
+                            builder: (context) => QuizScreen(
+                              quiz: _quiz,
+                              name: _name,
+                            ),
                           ));
                         },
                         child: Text(

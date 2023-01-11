@@ -21,12 +21,27 @@ class AppUser {
 }
 
 @JsonSerializable()
+class Report {
+  final String uid;
+  final int total;
+  Map quizes;
+
+  Report({
+    this.uid = '',
+    this.total = 0,
+    this.quizes = const {},
+  });
+
+  factory Report.fromJson(Map<String, dynamic> json) => _$ReportFromJson(json);
+  Map<String, dynamic> toJson() => _$ReportToJson(this);
+}
+
+@JsonSerializable()
 class Quiz {
   final List<Question> questions;
+  final String id;
 
-  const Quiz({
-    this.questions = const [],
-  });
+  const Quiz({this.questions = const [], this.id = ''});
 
   factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
   Map<String, dynamic> toJson() => _$QuizToJson(this);

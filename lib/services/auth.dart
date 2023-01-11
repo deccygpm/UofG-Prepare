@@ -19,6 +19,7 @@ class AuthService {
       if (await FirestoreService().userDocExists() == false) {
         String? uid = FirebaseAuth.instance.currentUser!.uid;
         FirestoreService().addUser(uid, '', '', '');
+        FirestoreService().addUserReport(uid);
       }
     } on FirebaseAuthException catch (e) {
       Utils.showErrorAlert(e.message);
@@ -33,6 +34,7 @@ class AuthService {
       if (await FirestoreService().userDocExists() == false) {
         String? uid = FirebaseAuth.instance.currentUser!.uid;
         FirestoreService().addUser(uid, firstName, lastName, email);
+        FirestoreService().addUserReport(uid);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -82,6 +84,7 @@ class AuthService {
         String? email = FirebaseAuth.instance.currentUser!.email;
         String? uid = FirebaseAuth.instance.currentUser!.uid;
         FirestoreService().addUser(uid, firstName, lastName, email!);
+        FirestoreService().addUserReport(uid);
       }
     } on FirebaseAuthException catch (e) {
       Utils.showErrorAlert(e.message);
@@ -124,6 +127,7 @@ class AuthService {
         String? uid = FirebaseAuth.instance.currentUser!.uid;
         FirestoreService().addUser(uid, appleCredential.givenName!,
             appleCredential.familyName!, appleCredential.email!);
+        FirestoreService().addUserReport(uid);
       }
     } on FirebaseAuthException catch (e) {
       Utils.showErrorAlert(e.message);
