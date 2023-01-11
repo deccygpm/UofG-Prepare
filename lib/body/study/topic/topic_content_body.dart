@@ -42,7 +42,7 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
                 onLastPage = (index == (_content.length - 1));
               });
             },
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             controller: controller,
             itemCount: _content.length,
             itemBuilder: ((context, index) {
@@ -86,7 +86,7 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
             }),
           ),
           Container(
-            alignment: Alignment(0, 0.8),
+            alignment: const Alignment(0, 0.8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -105,7 +105,7 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
                     : GestureDetector(
                         onTap: () {
                           controller.previousPage(
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn);
                         },
                         child: Text('Back',
@@ -141,7 +141,7 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
                     : GestureDetector(
                         onTap: () {
                           controller.nextPage(
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn);
                         },
                         child: Text(

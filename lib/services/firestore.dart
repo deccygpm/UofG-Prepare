@@ -18,6 +18,20 @@ class FirestoreService {
     });
   }
 
+  Future<void> updateUserReport(Quiz quiz) {
+    var user = AuthService().user!;
+    var ref = _db.collection('reports').doc(user.uid);
+
+    var data = {
+      'total': FieldValue.increment(1),
+      'quizes': {
+        quiz.id: FieldValue.arrayUnion([quiz.id])
+      }
+    };
+
+    return ref.set(data, SetOptions(merge: true));
+  }
+
   Future<List<School>> getSchools() async {
     var ref = _db.collection('schools');
     var snapshot = await ref.get();

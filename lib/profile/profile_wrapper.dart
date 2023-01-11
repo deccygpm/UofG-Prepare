@@ -15,8 +15,7 @@ class UserProfileWrapper extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingScreen();
           } else if (snapshot.hasError) {
-            print(snapshot.error);
-            return const Text("error");
+            return Text(snapshot.error.toString());
           } else if (snapshot.hasData) {
             if (snapshot.data?.email == '') {
               return GuestUserProfileScreen(user: snapshot.data);
@@ -24,7 +23,7 @@ class UserProfileWrapper extends StatelessWidget {
               return UserWithFullProfileScreen(user: snapshot.data);
             }
           } else {
-            return const Text('idk');
+            return const Text('Database Problem');
           }
         }));
   }

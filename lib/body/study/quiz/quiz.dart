@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:l2_transition/body/study/quiz/quiz_complete.dart';
+import 'package:l2_transition/body/study/quiz/quiz_intro.dart';
+import 'package:l2_transition/body/study/quiz/quiz_question.dart';
 import 'package:l2_transition/body/study/quiz/quiz_state.dart';
 import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/app_bar.dart';
 import 'package:provider/provider.dart';
 
 class QuizScreen extends StatelessWidget {
@@ -13,24 +13,30 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = Provider.of<QuizState>(context);
     return ChangeNotifierProvider(
-      create: (_) => QuizState(),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: PageView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: ((context, index) {
-              if (index == 0) {
-                //Welcome Page
-              }
-              if (index == (quiz.questions.length - 1)) {
-                //Congrats Page
-              } else {
-                //Question Page
-              }
-            })),
-      ),
-    );
+        create: (_) => QuizState(),
+        builder: ((context, child) {
+          var state = Provider.of<QuizState>(context);
+          return Scaffold(
+            appBar: AppBar(),
+            body: PageView.builder(
+                controller: state.controller,
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: (int index) {
+                  state.progress = (index / (quiz.questions.length + 1));
+                },
+                itemBuilder: ((context, index) {
+                  if (index == 0) {
+                    return QuizIntroScreen(name: name);
+                  }
+                  if (index == (quiz.questions.length + 1)) {
+                    return QuizCompleteScreen(name: name, quiz: quiz);
+                  } else {
+                    return QuizQuestionScreen(
+                        question: quiz.questions[index - 1]);
+                  }
+                })),
+          );
+        }));
   }
 }

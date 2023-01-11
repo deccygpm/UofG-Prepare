@@ -3,7 +3,6 @@ import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/shared/utils.dart';
 
 class SelectSchoolScreen extends StatelessWidget {
   const SelectSchoolScreen({

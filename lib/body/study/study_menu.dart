@@ -3,7 +3,6 @@ import 'package:l2_transition/body/study/study_tab.dart';
 import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/loading.dart';
-import 'package:l2_transition/shared/utils.dart';
 import 'package:l2_transition/theme.dart';
 
 class StudyMenuScreen extends StatefulWidget {
@@ -20,13 +19,9 @@ class _StudyMenuScreenState extends State<StudyMenuScreen> {
         future: FirestoreService().getAllStudySections(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingScreen();
+            return const LoadingScreen();
           } else if (snapshot.hasError) {
-            print(snapshot.error);
-
-            return Text('idk');
-            //return Center(
-            //child: Utils.showErrorAlert(snapshot.error.toString()));
+            return const Text("Error");
           } else if (snapshot.hasData) {
             List<Study> studies = snapshot.data!;
             return DefaultTabController(
@@ -63,7 +58,7 @@ class _StudyMenuScreenState extends State<StudyMenuScreen> {
               ),
             );
           } else {
-            return Text('Database Issue');
+            return const Text('Database Issue');
           }
         });
   }

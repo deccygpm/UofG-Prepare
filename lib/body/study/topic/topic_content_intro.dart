@@ -13,7 +13,6 @@ class TopicIntroScreen extends StatelessWidget {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: themeBlue,
-          child: Text('Start'),
           onPressed: (() {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => TopicContentScreen(
@@ -23,8 +22,9 @@ class TopicIntroScreen extends StatelessWidget {
               ),
             ));
           }),
+          child: const Text('Start'),
         ),
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         body: ListView(
           children: [
             Hero(
@@ -37,7 +37,7 @@ class TopicIntroScreen extends StatelessWidget {
             Center(
               child: Text(
                 Utils().capitalise(topic.name),
-                style: TextStyle(
+                style: const TextStyle(
                   height: 2,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
