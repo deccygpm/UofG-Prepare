@@ -32,24 +32,45 @@ class QuizIntroScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset(
+                    'assets/image/illustrations/project_manager/nine.png'),
                 Headline(
                     data: '${Utils().capitalise(name)} Quiz', color: themeBlue),
-                Expanded(
-                  child: Text(
-                      'You are about to take a quiz about ${Utils().capitalise(name)}. Click Start to get going or click Cancel to look at a different topic'),
+                const Divider(
+                  color: Colors.transparent,
+                ),
+                Text(
+                    'You are about to take a quiz about ${Utils().capitalise(name)}. Click Start to get going or click Cancel to look at a different topic'),
+                const Divider(
+                  color: Colors.transparent,
                 ),
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
+                    OutlinedButton(
                       onPressed: () => Navigator.pushNamedAndRemoveUntil(
                           context, '/selection', (route) => false),
-                      child: const Text('Cancel'),
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: themeGrey,
+                        side: const BorderSide(color: Colors.black, width: 3),
+                      ),
+                      child: const Text(
+                        "Cancel",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
-                    ElevatedButton(
+                    OutlinedButton(
                       onPressed: state.nextPage,
-                      child: const Text('Start'),
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: themeGrey,
+                        side: const BorderSide(color: Colors.black, width: 3),
+                      ),
+                      child: const Text(
+                        "Start",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ],
                 ),
