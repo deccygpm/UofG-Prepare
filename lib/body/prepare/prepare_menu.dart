@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:l2_transition/body/prepare/todo/todo.dart';
 import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
@@ -35,7 +36,16 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Utils.showSuccessAlert('I work');
+                            switch (sections[index].name) {
+                              case 'to-do':
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ToDoScreen(),
+                                ));
+                                break;
+                              default:
+                                Utils.showSuccessAlert('I work');
+                            }
                           },
                           child: Card(
                             color: Colors.amber,
