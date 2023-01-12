@@ -21,6 +21,33 @@ class AppUser {
 }
 
 @JsonSerializable()
+class ToDoList {
+  final List<ToDo> todos;
+
+  ToDoList({
+    this.todos = const [],
+  });
+
+  factory ToDoList.fromJson(Map<String, dynamic> json) =>
+      _$ToDoListFromJson(json);
+  Map<String, dynamic> toJson() => _$ToDoListToJson(this);
+}
+
+@JsonSerializable()
+class ToDo {
+  final String detail;
+  final bool complete;
+
+  ToDo({
+    this.complete = false,
+    this.detail = '',
+  });
+
+  factory ToDo.fromJson(Map<String, dynamic> json) => _$ToDoFromJson(json);
+  Map<String, dynamic> toJson() => _$ToDoToJson(this);
+}
+
+@JsonSerializable()
 class Report {
   final String uid;
   final int total;

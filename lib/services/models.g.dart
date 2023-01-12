@@ -20,6 +20,27 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
     };
 
+ToDoList _$ToDoListFromJson(Map<String, dynamic> json) => ToDoList(
+      todos: (json['todos'] as List<dynamic>?)
+              ?.map((e) => ToDo.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$ToDoListToJson(ToDoList instance) => <String, dynamic>{
+      'todos': instance.todos,
+    };
+
+ToDo _$ToDoFromJson(Map<String, dynamic> json) => ToDo(
+      complete: json['complete'] as bool? ?? false,
+      detail: json['detail'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$ToDoToJson(ToDo instance) => <String, dynamic>{
+      'detail': instance.detail,
+      'complete': instance.complete,
+    };
+
 Report _$ReportFromJson(Map<String, dynamic> json) => Report(
       uid: json['uid'] as String? ?? '',
       total: json['total'] as int? ?? 0,
