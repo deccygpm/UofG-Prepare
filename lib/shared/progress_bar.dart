@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:l2_transition/theme.dart';
 
 class ProgressBar extends StatelessWidget {
@@ -26,7 +23,7 @@ class ProgressBar extends StatelessWidget {
             ),
           ),
           AnimatedContainer(
-            duration: Duration(milliseconds: 800),
+            duration: const Duration(milliseconds: 800),
             curve: Curves.easeOutCubic,
             height: height,
             width: box.maxWidth * _floor(value),
@@ -44,10 +41,5 @@ class ProgressBar extends StatelessWidget {
 
   _floor(double value, [min = 0.0]) {
     return value.sign <= min ? min : value;
-  }
-
-  _colorGenerator(double value) {
-    int rbg = (value * 255).toInt();
-    return Colors.amber.withGreen(rbg).withRed(255 - rbg);
   }
 }

@@ -16,7 +16,7 @@ class QuizIntroScreen extends StatelessWidget {
         create: (_) => QuizState(),
         child: Container(
           color: themeBlue,
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 60),
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(

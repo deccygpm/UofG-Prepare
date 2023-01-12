@@ -11,6 +11,11 @@ class LocalData {
     return prefs.containsKey('school');
   }
 
+  Future<void> removeSchool() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('school');
+  }
+
   getSchool() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? school = prefs.getString('school');

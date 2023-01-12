@@ -28,7 +28,7 @@ class SelectSchoolScreen extends StatelessWidget {
               appBar: const CustomAppBar(),
               body: Container(
                 color: themeBlue,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     Headline(data: 'Select School', color: themeGrey),
@@ -46,7 +46,7 @@ class SelectSchoolScreen extends StatelessWidget {
                           border: Border.all(color: Colors.transparent),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        margin: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(20),
                         child: ListView.separated(
                             itemBuilder: (context, index) {
                               return ListTile(

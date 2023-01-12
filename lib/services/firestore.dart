@@ -32,6 +32,37 @@ class FirestoreService {
     return ref.set(data, SetOptions(merge: true));
   }
 
+  Future<ToDoList> getToDoList() async {
+    var alreadyExists = await _userToDoReportExists();
+    if (alreadyExists == true) {
+      return _getUserToDoReport();
+    } else {
+      _createUserToDoList();
+      return _getUserToDoReport();
+    }
+  }
+
+  Future<void> _createUserToDoList() async {
+    var ref = _db.collection('todo-reports').doc('1');
+    var standard = await ref.get();
+    await _db
+        .collection('todo-reports')
+        .doc(AuthService().user!.uid)
+        .set(standard.data() ?? {});
+  }
+
+  Future<ToDoList> _getUserToDoReport() async {
+    var ref = _db.collection('todo-reports').doc(AuthService().user!.uid);
+    var snapshot = await ref.get();
+    return ToDoList.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<bool> _userToDoReportExists() async {
+    var ref = _db.collection('todo-reports').doc(AuthService().user!.uid);
+    var snapshot = await ref.get();
+    return snapshot.exists;
+  }
+
   Future<List<School>> getSchools() async {
     var ref = _db.collection('schools');
     var snapshot = await ref.get();

@@ -36,7 +36,7 @@ class ToDoList {
 @JsonSerializable()
 class ToDo {
   final String detail;
-  final bool complete;
+  bool complete;
 
   ToDo({
     this.complete = false,

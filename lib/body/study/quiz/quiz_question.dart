@@ -89,7 +89,7 @@ class QuizQuestionScreen extends StatelessWidget {
                     correct
                         ? "That's right, well done!"
                         : "Incorrect, try again",
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

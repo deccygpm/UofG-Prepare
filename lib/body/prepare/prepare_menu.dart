@@ -40,7 +40,7 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                               case 'to-do':
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      ToDoScreen(),
+                                      const ToDoScreen(),
                                 ));
                                 break;
                               default:

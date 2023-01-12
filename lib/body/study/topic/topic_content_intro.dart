@@ -28,7 +28,7 @@ class TopicIntroScreen extends StatelessWidget {
         appBar: const CustomAppBar(),
         body: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

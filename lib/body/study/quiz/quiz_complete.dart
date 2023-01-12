@@ -12,7 +12,7 @@ class QuizCompleteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+      padding: const EdgeInsets.only(left: 30, right: 30, bottom: 60),
       color: themeBlue,
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -40,7 +40,7 @@ class QuizCompleteScreen extends StatelessWidget {
             ),
             Text(
               'You have completed the $name quiz!',
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
             const Divider(
               color: Colors.transparent,
