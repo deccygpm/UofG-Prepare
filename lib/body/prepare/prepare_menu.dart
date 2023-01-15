@@ -5,6 +5,7 @@ import 'package:l2_transition/services/local_data.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/loading.dart';
 import 'package:l2_transition/shared/utils.dart';
+import 'package:l2_transition/theme.dart';
 
 class PrepareMenuScreen extends StatefulWidget {
   const PrepareMenuScreen({super.key});
@@ -48,8 +49,27 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                             }
                           },
                           child: Card(
-                            color: Colors.amber,
-                            child: Center(child: Text(sections[index].name)),
+                            color: accentBlue,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  sections[index].icon,
+                                  style: const TextStyle(fontSize: 40),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  sections[index].name,
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                  style:
+                                      TextStyle(color: themeGrey, fontSize: 16),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       });
