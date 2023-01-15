@@ -21,6 +21,33 @@ class AppUser {
 }
 
 @JsonSerializable()
+class Glossary {
+  final List<Term> terms;
+
+  Glossary({
+    this.terms = const [],
+  });
+
+  factory Glossary.fromJson(Map<String, dynamic> json) =>
+      _$GlossaryFromJson(json);
+  Map<String, dynamic> toJson() => _$GlossaryToJson(this);
+}
+
+@JsonSerializable()
+class Term {
+  final String term;
+  final String definition;
+
+  Term({
+    this.definition = '',
+    this.term = '',
+  });
+
+  factory Term.fromJson(Map<String, dynamic> json) => _$TermFromJson(json);
+  Map<String, dynamic> toJson() => _$TermToJson(this);
+}
+
+@JsonSerializable()
 class ToDoList {
   final List<ToDo> todos;
 

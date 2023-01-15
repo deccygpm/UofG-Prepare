@@ -29,6 +29,12 @@ class FirestoreService {
     });
   }
 
+  Future<Glossary> getGlossary() async {
+    var ref = _db.collection('socs-sections').doc('glossary');
+    var snapshot = await ref.get();
+    return Glossary.fromJson(snapshot.data() ?? {});
+  }
+
   Future<void> updateUserReport(Quiz quiz) {
     var user = AuthService().user!;
     var ref = _db.collection('reports').doc(user.uid);

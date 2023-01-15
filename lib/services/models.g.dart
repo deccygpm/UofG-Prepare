@@ -20,6 +20,27 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
     };
 
+Glossary _$GlossaryFromJson(Map<String, dynamic> json) => Glossary(
+      terms: (json['terms'] as List<dynamic>?)
+              ?.map((e) => Term.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$GlossaryToJson(Glossary instance) => <String, dynamic>{
+      'terms': instance.terms,
+    };
+
+Term _$TermFromJson(Map<String, dynamic> json) => Term(
+      definition: json['definition'] as String? ?? '',
+      term: json['term'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$TermToJson(Term instance) => <String, dynamic>{
+      'term': instance.term,
+      'definition': instance.definition,
+    };
+
 ToDoList _$ToDoListFromJson(Map<String, dynamic> json) => ToDoList(
       todos: (json['todos'] as List<dynamic>?)
               ?.map((e) => ToDo.fromJson(e as Map<String, dynamic>))

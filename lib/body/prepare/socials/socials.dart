@@ -7,7 +7,7 @@ class SocialsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(),
       body: Text('socials'),
     );
