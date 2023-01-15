@@ -14,6 +14,12 @@ class ToDoScreen extends StatefulWidget {
 
 class _ToDoScreenState extends State<ToDoScreen> {
   @override
+  initState() {
+    super.initState();
+    FirestoreService().getToDoList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<ToDoList>(
         stream: FirestoreService().streamToDoList(),
@@ -21,31 +27,32 @@ class _ToDoScreenState extends State<ToDoScreen> {
           if (stream.connectionState == ConnectionState.waiting) {
             return const LoadingScreen();
           } else if (stream.hasError) {
-            return Text(stream.error.toString());
+            return const LoadingScreen();
           } else if (stream.hasData) {
             return Scaffold(
-                appBar: const CustomAppBar(),
-                body: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    children: [
-                      Headline(data: 'To Do List', color: themeBlue),
-                      const Divider(
-                        color: Colors.transparent,
+              appBar: const CustomAppBar(),
+              body: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  children: [
+                    Headline(data: 'To Do List', color: themeBlue),
+                    const Divider(
+                      color: Colors.transparent,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: stream.data!.todos.length,
+                        itemBuilder: (context, index) {
+                          return ToDoTile(index: index, list: stream.data!);
+                        },
                       ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: stream.data!.todos.length,
-                          itemBuilder: (context, index) {
-                            return ToDoTile(index: index, list: stream.data!);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ));
+                    ),
+                  ],
+                ),
+              ),
+            );
           } else {
-            return const Text('DB Issue');
+            return const LoadingScreen();
           }
         });
   }

@@ -10,7 +10,6 @@ class FirestoreService {
   Stream<Report> streamReport() {
     return AuthService().userStream.switchMap((user) {
       if (user != null) {
-        getToDoList();
         var ref = _db.collection('reports').doc(user.uid);
         return ref.snapshots().map((doc) => Report.fromJson(doc.data()!));
       } else {
