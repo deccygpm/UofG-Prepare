@@ -22,7 +22,7 @@ class QuizQuestionScreen extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                    'assets/image/illustrations/project_manager/twelve.png'),
+                    'assets/image/illustrations/project_manager/fifteen.png'),
                 SubHeadline(data: 'Q: ${question.question}'),
               ],
             ),
