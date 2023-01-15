@@ -38,7 +38,7 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                         return InkWell(
                           onTap: () {
                             switch (sections[index].name) {
-                              case 'to-do':
+                              case 'ToDo':
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       const ToDoScreen(),
