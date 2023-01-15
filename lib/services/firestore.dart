@@ -10,10 +10,22 @@ class FirestoreService {
   Stream<Report> streamReport() {
     return AuthService().userStream.switchMap((user) {
       if (user != null) {
+        getToDoList();
         var ref = _db.collection('reports').doc(user.uid);
         return ref.snapshots().map((doc) => Report.fromJson(doc.data()!));
       } else {
         return Stream.fromIterable([Report()]);
+      }
+    });
+  }
+
+  Stream<ToDoList> streamToDoList() {
+    return AuthService().userStream.switchMap((user) {
+      if (user != null) {
+        var ref = _db.collection('todo-reports').doc(user.uid);
+        return ref.snapshots().map(((doc) => ToDoList.fromJson(doc.data()!)));
+      } else {
+        return Stream.fromIterable([ToDoList()]);
       }
     });
   }
@@ -30,6 +42,18 @@ class FirestoreService {
     };
 
     return ref.set(data, SetOptions(merge: true));
+  }
+
+  Future<void> updateUserToDoList(int index) async {
+    var user = AuthService().user!;
+    var ref = _db.collection('todo-reports').doc(user.uid);
+    var snapshot = await ref.get();
+
+    var newData = snapshot.data();
+    newData!['todos'][index]['complete'] = !newData['todos'][index]['complete'];
+    print(newData);
+
+    await ref.set(newData);
   }
 
   Future<ToDoList> getToDoList() async {

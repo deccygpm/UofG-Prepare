@@ -17,31 +17,44 @@ class ToDoScreen extends StatefulWidget {
 class _ToDoScreenState extends State<ToDoScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (_) => ToDoState(),
-        builder: (context, snapshot) {
-          var state = Provider.of<ToDoState>(context);
-          return Scaffold(
-              appBar: const CustomAppBar(),
-              body: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Column(
-                  children: [
-                    Headline(data: 'To Do List', color: themeBlue),
-                    Divider(
-                      color: Colors.transparent,
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: state.toDoList!.todos.length,
-                        itemBuilder: (context, index) {
-                          return ToDoTile(index: index);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ));
+    return StreamBuilder<ToDoList>(
+        stream: FirestoreService().streamToDoList(),
+        builder: (context, stream) {
+          if (stream.connectionState == ConnectionState.waiting) {
+            return LoadingScreen();
+          } else if (stream.hasError) {
+            return Text(stream.error.toString());
+          } else if (stream.hasData) {
+            return ChangeNotifierProvider(
+                create: (_) => ToDoState(),
+                builder: (context, snapshot) {
+                  var state = Provider.of<ToDoState>(context);
+                  return Scaffold(
+                      appBar: const CustomAppBar(),
+                      body: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Column(
+                          children: [
+                            Headline(data: 'To Do List', color: themeBlue),
+                            const Divider(
+                              color: Colors.transparent,
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: stream.data!.todos.length,
+                                itemBuilder: (context, index) {
+                                  return ToDoTile(
+                                      index: index, list: stream.data!);
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ));
+                });
+          } else {
+            return Text('DB Issue');
+          }
         });
   }
 }

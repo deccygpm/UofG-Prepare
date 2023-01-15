@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/body/prepare/todo/todo_state.dart';
+import 'package:l2_transition/services/firestore.dart';
+import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/theme.dart';
 import 'package:provider/provider.dart';
 
 class ToDoTile extends StatefulWidget {
   final int index;
+  final ToDoList list;
   const ToDoTile({
     super.key,
     required this.index,
+    required this.list,
   });
 
   @override
@@ -39,15 +43,17 @@ class _ToDoTileState extends State<ToDoTile> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              state.toDoList!.todos[widget.index].detail,
+              widget.list.todos[widget.index].detail,
               style: TextStyle(color: themeGrey, fontSize: 16),
             ),
             Checkbox(
               activeColor: themeGrey,
               checkColor: accentBlue,
-              value: state.toDoList!.todos[widget.index].complete,
+              value: widget.list.todos[widget.index].complete,
               onChanged: (value) {
-                state.updateToDoComplete(value, widget.index);
+                widget.list.todos[widget.index].complete =
+                    !widget.list.todos[widget.index].complete;
+                FirestoreService().updateUserToDoList(widget.index);
               },
               side: MaterialStateBorderSide.resolveWith(
                 (states) => BorderSide(width: 1.0, color: themeGrey),
