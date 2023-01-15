@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:l2_transition/body/prepare/academic_resources/academic_resources.dart';
+import 'package:l2_transition/body/prepare/english_language/english_language.dart';
+import 'package:l2_transition/body/prepare/extracurricular/extracurricular.dart';
+import 'package:l2_transition/body/prepare/glossary/glossary.dart';
+import 'package:l2_transition/body/prepare/socials/socials.dart';
+import 'package:l2_transition/body/prepare/testimonials/testimonials.dart';
+import 'package:l2_transition/body/prepare/timetable/timetable.dart';
 import 'package:l2_transition/body/prepare/todo/todo.dart';
 import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/local_data.dart';
@@ -37,16 +44,7 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            switch (sections[index].name) {
-                              case 'ToDo':
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const ToDoScreen(),
-                                ));
-                                break;
-                              default:
-                                Utils.showSuccessAlert('I work');
-                            }
+                            selection(sections[index].name);
                           },
                           child: Card(
                             color: accentBlue,
@@ -82,5 +80,53 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
             return const LoadingScreen();
           }
         });
+  }
+
+  void selection(String name) {
+    switch (name) {
+      case 'ToDo':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => const ToDoScreen(),
+        ));
+        break;
+      case 'Glossary':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => GlossaryScreen(),
+        ));
+        break;
+      case 'Testimonials':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => TestimonialsScreen(),
+        ));
+        break;
+      case 'Academic Resources':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => AcademicResourcesScreen(),
+        ));
+        break;
+      case 'English Language':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => EnglishLanguageScreen(),
+        ));
+        break;
+      case 'Socials':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => SocialsScreen(),
+        ));
+        break;
+      case 'Example Timetable':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => TimetableScreen(),
+        ));
+        break;
+      case 'Extracurricular':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => ExtracurricularScreen(),
+        ));
+        break;
+
+      default:
+        Utils.showSuccessAlert('I work');
+    }
   }
 }
