@@ -29,6 +29,12 @@ class FirestoreService {
     });
   }
 
+  Future<EnglishLanguage> getEnglishLanguage() async {
+    var ref = _db.collection('socs-sections').doc('english-language');
+    var snapshot = await ref.get();
+    return EnglishLanguage.fromJson(snapshot.data() ?? {});
+  }
+
   Future<Glossary> getGlossary() async {
     var ref = _db.collection('socs-sections').doc('glossary');
     var snapshot = await ref.get();

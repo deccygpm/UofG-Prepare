@@ -11,3 +11,7 @@ fix-pods:
 	cd ios
 	arch -x86_64 pod install
 	cd ..
+
+icons:
+	flutter pub get
+	flutter pub run flutter_launcher_icons

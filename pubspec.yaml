@@ -49,6 +49,7 @@ dependencies:
   flutter_html: ^2.2.1
   smooth_page_indicator: ^1.0.0+2
   grouped_list: ^5.1.2
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -57,14 +58,22 @@ dev_dependencies:
   build_runner: ^2.3.2
   json_serializable: ^6.5.4
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/image/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
 flutter:
   uses-material-design: true
   assets:
      - assets/image/
+     - assets/image/dict_logos/
      - assets/image/programming/
      - assets/image/illustrations/
      - assets/image/illustrations/character/
      - assets/image/illustrations/project_manager/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

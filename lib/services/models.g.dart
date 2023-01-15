@@ -31,6 +31,35 @@ Map<String, dynamic> _$GlossaryToJson(Glossary instance) => <String, dynamic>{
       'terms': instance.terms,
     };
 
+EnglishLanguage _$EnglishLanguageFromJson(Map<String, dynamic> json) =>
+    EnglishLanguage(
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) => EnglishResource.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$EnglishLanguageToJson(EnglishLanguage instance) =>
+    <String, dynamic>{
+      'resources': instance.resources,
+    };
+
+EnglishResource _$EnglishResourceFromJson(Map<String, dynamic> json) =>
+    EnglishResource(
+      name: json['name'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      link: json['link'] as String? ?? '',
+      image: json['image'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$EnglishResourceToJson(EnglishResource instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'description': instance.description,
+      'link': instance.link,
+      'image': instance.image,
+    };
+
 Term _$TermFromJson(Map<String, dynamic> json) => Term(
       definition: json['definition'] as String? ?? '',
       term: json['term'] as String? ?? '',

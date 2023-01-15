@@ -34,6 +34,38 @@ class Glossary {
 }
 
 @JsonSerializable()
+class EnglishLanguage {
+  final List<EnglishResource> resources;
+
+  EnglishLanguage({
+    this.resources = const [],
+  });
+
+  factory EnglishLanguage.fromJson(Map<String, dynamic> json) =>
+      _$EnglishLanguageFromJson(json);
+  Map<String, dynamic> toJson() => _$EnglishLanguageToJson(this);
+}
+
+@JsonSerializable()
+class EnglishResource {
+  final String name;
+  final String description;
+  final String link;
+  final String image;
+
+  EnglishResource({
+    this.name = '',
+    this.description = '',
+    this.link = '',
+    this.image = '',
+  });
+
+  factory EnglishResource.fromJson(Map<String, dynamic> json) =>
+      _$EnglishResourceFromJson(json);
+  Map<String, dynamic> toJson() => _$EnglishResourceToJson(this);
+}
+
+@JsonSerializable()
 class Term {
   final String term;
   final String definition;
