@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/prepare/todo/todo_state.dart';
 import 'package:l2_transition/services/firestore.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/theme.dart';
-import 'package:provider/provider.dart';
 
 class ToDoTile extends StatefulWidget {
   final int index;
@@ -21,7 +19,6 @@ class ToDoTile extends StatefulWidget {
 class _ToDoTileState extends State<ToDoTile> {
   @override
   Widget build(BuildContext context) {
-    var state = Provider.of<ToDoState>(context);
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 15),
       child: Container(

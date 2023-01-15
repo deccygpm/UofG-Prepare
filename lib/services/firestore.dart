@@ -51,7 +51,6 @@ class FirestoreService {
 
     var newData = snapshot.data();
     newData!['todos'][index]['complete'] = !newData['todos'][index]['complete'];
-    print(newData);
 
     await ref.set(newData);
   }
