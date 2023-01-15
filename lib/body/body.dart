@@ -35,17 +35,17 @@ class _SelectSectionScreenState extends State<SelectSectionScreen> {
             selectedIndex: index,
             onDestinationSelected: (index) =>
                 setState(() => this.index = index),
-            destinations: const [
+            destinations: [
               NavigationDestination(
                   icon: Icon(
                     Icons.grid_4x4_rounded,
-                    color: Colors.amber,
+                    color: themeGrey,
                   ),
                   label: 'Prepare'),
               NavigationDestination(
                   icon: Icon(
                     Icons.quiz_rounded,
-                    color: Colors.amber,
+                    color: themeGrey,
                   ),
                   label: 'Study'),
             ],
