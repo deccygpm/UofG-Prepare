@@ -29,6 +29,12 @@ class FirestoreService {
     });
   }
 
+  Future<Extracurricular> getExtracurricular() async {
+    var ref = _db.collection('socs-sections').doc('extracurricular');
+    var snapshot = await ref.get();
+    return Extracurricular.fromJson(snapshot.data() ?? {});
+  }
+
   Future<EnglishLanguage> getEnglishLanguage() async {
     var ref = _db.collection('socs-sections').doc('english-language');
     var snapshot = await ref.get();
