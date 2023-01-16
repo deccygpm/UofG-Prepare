@@ -13,39 +13,43 @@ class ExtracurricularScreen extends StatelessWidget {
     return FutureBuilder(
         future: FirestoreService().getExtracurricular(),
         builder: (context, snapshot) {
-          List<Resource> resources = snapshot.data!.resources;
-          return Scaffold(
-            appBar: const CustomAppBar(),
-            body: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Headline(data: 'Extracurriculars', color: themeBlue),
-                  const Divider(
-                    color: Colors.transparent,
-                  ),
-                  Expanded(
-                    child: ListView.separated(
-                      itemCount: resources.length,
-                      separatorBuilder: (context, index) {
-                        return const Divider(
-                          color: Colors.transparent,
-                        );
-                      },
-                      itemBuilder: (context, index) {
-                        if (index != 0) {
-                          return ExtracurricularCard(
-                              resource: resources[index]);
-                        } else {
-                          return _IntroBox(resources: resources);
-                        }
-                      },
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return LoadingScreen();
+          } else {
+            List<Resource> resources = snapshot.data!.resources;
+            return Scaffold(
+              appBar: const CustomAppBar(),
+              body: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Headline(data: 'Extracurriculars', color: themeBlue),
+                    const Divider(
+                      color: Colors.transparent,
                     ),
-                  )
-                ],
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: resources.length,
+                        separatorBuilder: (context, index) {
+                          return const Divider(
+                            color: Colors.transparent,
+                          );
+                        },
+                        itemBuilder: (context, index) {
+                          if (index != 0) {
+                            return ExtracurricularCard(
+                                resource: resources[index]);
+                          } else {
+                            return _IntroBox(resources: resources);
+                          }
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          }
         });
   }
 }

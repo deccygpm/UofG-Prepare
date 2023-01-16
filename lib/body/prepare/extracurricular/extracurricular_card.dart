@@ -31,7 +31,7 @@ class ExtracurricularCard extends StatelessWidget {
               data: resource.description,
               color: themeGrey,
             ),
-            Image.asset('assets/image/misc/gla-facade.jpg'),
+            Image.asset(resource.image),
             OutlinedButton(
               onPressed: () async {
                 var uri = Uri.parse(resource.link);
