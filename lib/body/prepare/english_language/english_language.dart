@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:l2_transition/body/prepare/english_language/english_language_card.dart';
 import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/shared/app_bar.dart';
-import 'package:l2_transition/shared/loading.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/theme.dart';
 
@@ -27,7 +25,7 @@ class EnglishLanguageScreen extends StatelessWidget {
                       itemCount: snapshot.data!.resources.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20),
                           child: EnglishLanguageCard(
                             resource: snapshot.data!.resources[index],
                           ),

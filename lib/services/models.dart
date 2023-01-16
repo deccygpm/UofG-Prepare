@@ -35,7 +35,7 @@ class Glossary {
 
 @JsonSerializable()
 class EnglishLanguage {
-  final List<EnglishResource> resources;
+  final List<Resource> resources;
 
   EnglishLanguage({
     this.resources = const [],
@@ -47,22 +47,35 @@ class EnglishLanguage {
 }
 
 @JsonSerializable()
-class EnglishResource {
+class Extracurricular {
+  final List<Resource> resources;
+
+  Extracurricular({
+    this.resources = const [],
+  });
+
+  factory Extracurricular.fromJson(Map<String, dynamic> json) =>
+      _$ExtracurricularFromJson(json);
+  Map<String, dynamic> toJson() => _$ExtracurricularToJson(this);
+}
+
+@JsonSerializable()
+class Resource {
   final String name;
   final String description;
   final String link;
   final String image;
 
-  EnglishResource({
+  Resource({
     this.name = '',
     this.description = '',
     this.link = '',
     this.image = '',
   });
 
-  factory EnglishResource.fromJson(Map<String, dynamic> json) =>
-      _$EnglishResourceFromJson(json);
-  Map<String, dynamic> toJson() => _$EnglishResourceToJson(this);
+  factory Resource.fromJson(Map<String, dynamic> json) =>
+      _$ResourceFromJson(json);
+  Map<String, dynamic> toJson() => _$ResourceToJson(this);
 }
 
 @JsonSerializable()

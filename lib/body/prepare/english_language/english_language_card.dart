@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:l2_transition/services/models.dart';
 import 'package:l2_transition/shared/shared.dart';
 import 'package:l2_transition/theme.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EnglishLanguageCard extends StatelessWidget {
-  final EnglishResource resource;
+  final Resource resource;
   const EnglishLanguageCard({
     super.key,
     required this.resource,
@@ -16,7 +15,7 @@ class EnglishLanguageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: accentBlue),
       child: Column(
@@ -34,7 +33,7 @@ class EnglishLanguageCard extends StatelessWidget {
               Expanded(
                 child: FancyText(data: resource.description, color: themeGrey),
               ),
-              Container(
+              SizedBox(
                 height: 50,
                 width: 50,
                 child: Image.asset(
