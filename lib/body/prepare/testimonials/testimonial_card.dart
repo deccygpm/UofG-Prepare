@@ -21,7 +21,7 @@ class _TestimonialCardState extends State<TestimonialCard> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: accentBlue,
+        color: accentGreen,
         borderRadius: BorderRadius.circular(15),
       ),
       child: GestureDetector(
@@ -82,7 +82,10 @@ class _TrueColumn extends StatelessWidget {
                   ),
                   Text(
                     widget.testimony.interview.questions[0].question,
-                    style: TextStyle(color: themeGrey, fontSize: 18),
+                    style: TextStyle(
+                        color: themeGrey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.testimony.interview.questions[0].answer,
@@ -93,7 +96,10 @@ class _TrueColumn extends StatelessWidget {
                   ),
                   Text(
                     widget.testimony.interview.questions[1].question,
-                    style: TextStyle(color: themeGrey, fontSize: 18),
+                    style: TextStyle(
+                        color: themeGrey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.testimony.interview.questions[1].answer,
@@ -104,7 +110,10 @@ class _TrueColumn extends StatelessWidget {
                   ),
                   Text(
                     widget.testimony.interview.questions[2].question,
-                    style: TextStyle(color: themeGrey, fontSize: 18),
+                    style: TextStyle(
+                        color: themeGrey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.testimony.interview.questions[2].answer,
