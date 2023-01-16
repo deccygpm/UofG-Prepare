@@ -32,9 +32,7 @@ class FirestoreService {
   Future<Testimonials> getTestimonials() async {
     var ref = _db.collection('socs-sections').doc('testimonials');
     var snapshot = await ref.get();
-    print(snapshot.data());
     var x = Testimonials.fromJson(snapshot.data() ?? {});
-    print(x.testimony);
     return x;
   }
 
