@@ -14,7 +14,7 @@ class ExtracurricularScreen extends StatelessWidget {
         future: FirestoreService().getExtracurricular(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingScreen();
+            return const LoadingScreen();
           } else {
             List<Resource> resources = snapshot.data!.resources;
             return Scaffold(

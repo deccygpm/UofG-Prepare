@@ -71,6 +71,70 @@ Map<String, dynamic> _$ResourceToJson(Resource instance) => <String, dynamic>{
       'image': instance.image,
     };
 
+Testimonials _$TestimonialsFromJson(Map<String, dynamic> json) => Testimonials(
+      testimony: (json['testimony'] as List<dynamic>?)
+              ?.map((e) => Testimony.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$TestimonialsToJson(Testimonials instance) =>
+    <String, dynamic>{
+      'testimony': instance.testimony,
+    };
+
+Testimony _$TestimonyFromJson(Map<String, dynamic> json) => Testimony(
+      interview: json['interview'] == null
+          ? const Interview()
+          : Interview.fromJson(json['interview'] as Map<String, dynamic>),
+      intro: json['intro'] == null
+          ? const TestimonyIntro()
+          : TestimonyIntro.fromJson(json['intro'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$TestimonyToJson(Testimony instance) => <String, dynamic>{
+      'interview': instance.interview,
+      'intro': instance.intro,
+    };
+
+TestimonyIntro _$TestimonyIntroFromJson(Map<String, dynamic> json) =>
+    TestimonyIntro(
+      course: json['course'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      icon: json['icon'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$TestimonyIntroToJson(TestimonyIntro instance) =>
+    <String, dynamic>{
+      'course': instance.course,
+      'name': instance.name,
+      'icon': instance.icon,
+    };
+
+Interview _$InterviewFromJson(Map<String, dynamic> json) => Interview(
+      questions: (json['questions'] as List<dynamic>?)
+              ?.map(
+                  (e) => InterviewQuestion.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$InterviewToJson(Interview instance) => <String, dynamic>{
+      'questions': instance.questions,
+    };
+
+InterviewQuestion _$InterviewQuestionFromJson(Map<String, dynamic> json) =>
+    InterviewQuestion(
+      question: json['question'] as String? ?? '',
+      answer: json['answer'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$InterviewQuestionToJson(InterviewQuestion instance) =>
+    <String, dynamic>{
+      'question': instance.question,
+      'answer': instance.answer,
+    };
+
 Term _$TermFromJson(Map<String, dynamic> json) => Term(
       definition: json['definition'] as String? ?? '',
       term: json['term'] as String? ?? '',

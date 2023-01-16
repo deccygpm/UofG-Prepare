@@ -79,6 +79,79 @@ class Resource {
 }
 
 @JsonSerializable()
+class Testimonials {
+  final List<Testimony> testimony;
+
+  Testimonials({
+    this.testimony = const [],
+  });
+
+  factory Testimonials.fromJson(Map<String, dynamic> json) =>
+      _$TestimonialsFromJson(json);
+  Map<String, dynamic> toJson() => _$TestimonialsToJson(this);
+}
+
+@JsonSerializable()
+class Testimony {
+  final Interview interview;
+  final TestimonyIntro intro;
+
+  Testimony({
+    this.interview = const Interview(),
+    this.intro = const TestimonyIntro(),
+  });
+
+  factory Testimony.fromJson(Map<String, dynamic> json) =>
+      _$TestimonyFromJson(json);
+  Map<String, dynamic> toJson() => _$TestimonyToJson(this);
+}
+
+@JsonSerializable()
+class TestimonyIntro {
+  final String course;
+  final String name;
+  final String icon;
+
+  const TestimonyIntro({
+    this.course = '',
+    this.name = '',
+    this.icon = '',
+  });
+
+  factory TestimonyIntro.fromJson(Map<String, dynamic> json) =>
+      _$TestimonyIntroFromJson(json);
+  Map<String, dynamic> toJson() => _$TestimonyIntroToJson(this);
+}
+
+@JsonSerializable()
+class Interview {
+  final List<InterviewQuestion> questions;
+
+  const Interview({
+    this.questions = const [],
+  });
+
+  factory Interview.fromJson(Map<String, dynamic> json) =>
+      _$InterviewFromJson(json);
+  Map<String, dynamic> toJson() => _$InterviewToJson(this);
+}
+
+@JsonSerializable()
+class InterviewQuestion {
+  final String question;
+  final String answer;
+
+  InterviewQuestion({
+    this.question = '',
+    this.answer = '',
+  });
+
+  factory InterviewQuestion.fromJson(Map<String, dynamic> json) =>
+      _$InterviewQuestionFromJson(json);
+  Map<String, dynamic> toJson() => _$InterviewQuestionToJson(this);
+}
+
+@JsonSerializable()
 class Term {
   final String term;
   final String definition;

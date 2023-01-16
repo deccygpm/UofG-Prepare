@@ -14,45 +14,41 @@ class ExtracurricularCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: accentBlue),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                resource.name,
-                style: TextStyle(
-                    color: themeGrey,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Text(
+              resource.name,
+              style: TextStyle(
+                  color: themeGrey, fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            FancyText(
-              data: resource.description,
-              color: themeGrey,
+          ),
+          FancyText(
+            data: resource.description,
+            color: themeGrey,
+          ),
+          Image.asset(resource.image),
+          OutlinedButton(
+            onPressed: () async {
+              var uri = Uri.parse(resource.link);
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri);
+              } else {
+                throw 'Could not launch $uri';
+              }
+            },
+            style: OutlinedButton.styleFrom(
+              backgroundColor: themeGrey,
+              side: const BorderSide(color: Colors.black, width: 3),
             ),
-            Image.asset(resource.image),
-            OutlinedButton(
-              onPressed: () async {
-                var uri = Uri.parse(resource.link);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri);
-                } else {
-                  throw 'Could not launch $uri';
-                }
-              },
-              style: OutlinedButton.styleFrom(
-                backgroundColor: themeGrey,
-                side: const BorderSide(color: Colors.black, width: 3),
-              ),
-              child: const Text(
-                "Go",
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
+            child: const Text(
+              "Go",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
