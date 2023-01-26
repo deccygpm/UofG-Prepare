@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uofg.l2transition.l2_transition">
    <application
-        android:label="l2_transition"
+        android:label="UofG Prepare"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
