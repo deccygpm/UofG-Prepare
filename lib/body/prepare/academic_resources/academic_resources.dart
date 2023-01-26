@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/shared/app_bar.dart';
+import 'package:uofg_prepare/shared/app_bar.dart';
 
 class AcademicResourcesScreen extends StatelessWidget {
   const AcademicResourcesScreen({super.key});

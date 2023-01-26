@@ -1,19 +1,19 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/prepare/academic_resources/academic_resources.dart';
-import 'package:l2_transition/body/prepare/english_language/english_language.dart';
-import 'package:l2_transition/body/prepare/extracurricular/extracurricular.dart';
-import 'package:l2_transition/body/prepare/glossary/glossary.dart';
-import 'package:l2_transition/body/prepare/socials/socials.dart';
-import 'package:l2_transition/body/prepare/testimonials/testimonials.dart';
-import 'package:l2_transition/body/prepare/timetable/timetable.dart';
-import 'package:l2_transition/body/prepare/todo/todo.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/services/local_data.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/prepare/academic_resources/academic_resources.dart';
+import 'package:uofg_prepare/body/prepare/english_language/english_language.dart';
+import 'package:uofg_prepare/body/prepare/extracurricular/extracurricular.dart';
+import 'package:uofg_prepare/body/prepare/glossary/glossary.dart';
+import 'package:uofg_prepare/body/prepare/socials/socials.dart';
+import 'package:uofg_prepare/body/prepare/testimonials/testimonials.dart';
+import 'package:uofg_prepare/body/prepare/timetable/timetable.dart';
+import 'package:uofg_prepare/body/prepare/todo/todo.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/services/local_data.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class PrepareMenuScreen extends StatefulWidget {
   const PrepareMenuScreen({super.key});

@@ -2,8 +2,9 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:l2_transition/services/auth.dart';
-import 'package:l2_transition/theme.dart';
+
+import 'package:uofg_prepare/services/auth.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({

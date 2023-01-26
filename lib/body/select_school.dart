@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/services/local_data.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/services/local_data.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class SelectSchoolScreen extends StatelessWidget {
   const SelectSchoolScreen({

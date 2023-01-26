@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/prepare/prepare_menu.dart';
-import 'package:l2_transition/shared/app_bar.dart';
-import 'package:l2_transition/body/study/study_menu.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/prepare/prepare_menu.dart';
+import 'package:uofg_prepare/shared/app_bar.dart';
+import 'package:uofg_prepare/body/study/study_menu.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class SelectSectionScreen extends StatefulWidget {
   const SelectSectionScreen({super.key});

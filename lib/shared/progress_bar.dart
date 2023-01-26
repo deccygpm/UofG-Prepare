@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class ProgressBar extends StatelessWidget {
   final double value;

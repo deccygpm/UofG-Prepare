@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/quiz/quiz.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/study/quiz/quiz.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TopicContentScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class ToDoTile extends StatefulWidget {
   final int index;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/quiz/quiz_complete.dart';
-import 'package:l2_transition/body/study/quiz/quiz_intro.dart';
-import 'package:l2_transition/body/study/quiz/quiz_question.dart';
-import 'package:l2_transition/body/study/quiz/quiz_state.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/study/quiz/quiz_complete.dart';
+import 'package:uofg_prepare/body/study/quiz/quiz_intro.dart';
+import 'package:uofg_prepare/body/study/quiz/quiz_question.dart';
+import 'package:uofg_prepare/body/study/quiz/quiz_state.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 import 'package:provider/provider.dart';
 
 class QuizScreen extends StatelessWidget {

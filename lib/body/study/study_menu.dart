@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/study_tab.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/loading.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/study/study_tab.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/loading.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class StudyMenuScreen extends StatefulWidget {
   const StudyMenuScreen({super.key});

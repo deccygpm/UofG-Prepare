@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EnglishLanguageCard extends StatelessWidget {

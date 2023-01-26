@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/services/models.dart';
+import 'package:uofg_prepare/services/models.dart';
 
 class QuizState with ChangeNotifier {
   double _progress = 0;

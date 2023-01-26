@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:l2_transition/body/prepare/glossary/glossary_tile.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/prepare/glossary/glossary_tile.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class GlossaryScreen extends StatefulWidget {
   const GlossaryScreen({super.key});

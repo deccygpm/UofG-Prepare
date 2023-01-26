@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/prepare/todo/todo_tile.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/prepare/todo/todo_tile.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({super.key});
