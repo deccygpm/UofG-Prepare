@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:l2_transition/body/prepare/academic_resources/academic_resources.dart';
 import 'package:l2_transition/body/prepare/english_language/english_language.dart';
@@ -69,13 +71,16 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Text(
-                                          sections[index].name,
-                                          textAlign: TextAlign.center,
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              color: themeGrey, fontSize: 16),
-                                        ),
+                                        Text(sections[index].name,
+                                            textAlign: TextAlign.center,
+                                            softWrap: true,
+                                            style: Platform.isIOS
+                                                ? TextStyle(
+                                                    color: themeGrey,
+                                                    fontSize: 16)
+                                                : TextStyle(
+                                                    color: themeGrey,
+                                                    fontSize: 14)),
                                       ],
                                     ),
                                   ),

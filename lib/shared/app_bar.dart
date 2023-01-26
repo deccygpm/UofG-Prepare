@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:l2_transition/services/auth.dart';
@@ -19,10 +21,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Padding(
         padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
-        child: Image.asset(
-          'assets/image/uofg-logo.jpg',
-          scale: 8,
-        ),
+        child: Platform.isIOS
+            ? Image.asset(
+                'assets/image/uofg-logo.jpg',
+                scale: 8,
+              )
+            : SafeArea(
+                child: Image.asset('assets/image/uofg-logo.jpg', scale: 11)),
       ),
       actions: <Widget>[
         Padding(

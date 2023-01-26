@@ -39,9 +39,15 @@ class _ToDoTileState extends State<ToDoTile> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              widget.list.todos[widget.index].detail,
-              style: TextStyle(color: themeGrey, fontSize: 16),
+            Expanded(
+              child: Text(
+                widget.list.todos[widget.index].detail,
+                style: TextStyle(
+                  color: themeGrey,
+                  fontSize: 16,
+                ),
+                softWrap: true,
+              ),
             ),
             Checkbox(
               activeColor: themeGrey,
