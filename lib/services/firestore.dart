@@ -29,11 +29,16 @@ class FirestoreService {
     });
   }
 
+  Future<Contacts> getContacts() async {
+    var ref = _db.collection('socs-sections').doc('contacts');
+    var snapshot = await ref.get();
+    return Contacts.fromJson(snapshot.data() ?? {});
+  }
+
   Future<Testimonials> getTestimonials() async {
     var ref = _db.collection('socs-sections').doc('testimonials');
     var snapshot = await ref.get();
-    var x = Testimonials.fromJson(snapshot.data() ?? {});
-    return x;
+    return Testimonials.fromJson(snapshot.data() ?? {});
   }
 
   Future<Extracurricular> getExtracurricular() async {

@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:uofg_prepare/body/prepare/academic_resources/academic_resources.dart';
+import 'package:uofg_prepare/body/prepare/contacts/contacts.dart';
 import 'package:uofg_prepare/body/prepare/english_language/english_language.dart';
 import 'package:uofg_prepare/body/prepare/extracurricular/extracurricular.dart';
 import 'package:uofg_prepare/body/prepare/glossary/glossary.dart';
@@ -141,6 +142,11 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
       case 'Extracurricular':
         Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context) => const ExtracurricularScreen(),
+        ));
+        break;
+      case 'Contacts':
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => const ContactsScreen(),
         ));
         break;
 

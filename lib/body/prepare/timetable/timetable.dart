@@ -16,19 +16,25 @@ class TimetableScreen extends StatelessWidget {
           Headline(data: 'Example Timetable', color: themeBlue),
           const TimeTableCard(),
           Container(
-            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            margin: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+            ),
             decoration: BoxDecoration(
-              color: Colors.purple,
+              color: Colors.deepPurple[300],
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Text(
-              "You will need to study more than you think!",
-              style: TextStyle(
-                color: themeGrey,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8, top: 8),
+              child: Text(
+                "You will need to study more than you think!",
+                style: TextStyle(
+                  color: themeGrey,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
           Expanded(

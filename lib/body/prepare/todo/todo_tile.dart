@@ -42,10 +42,15 @@ class _ToDoTileState extends State<ToDoTile> {
             Expanded(
               child: Text(
                 widget.list.todos[widget.index].detail,
-                style: TextStyle(
-                  color: themeGrey,
-                  fontSize: 16,
-                ),
+                style: widget.list.todos[widget.index].complete
+                    ? TextStyle(
+                        color: themeGrey,
+                        fontSize: 16,
+                        decoration: TextDecoration.lineThrough)
+                    : TextStyle(
+                        color: themeGrey,
+                        fontSize: 16,
+                      ),
                 softWrap: true,
               ),
             ),

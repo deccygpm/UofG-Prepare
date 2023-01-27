@@ -21,6 +21,38 @@ class AppUser {
 }
 
 @JsonSerializable()
+class Contacts {
+  final List<Contact> contacts;
+
+  Contacts({
+    this.contacts = const [],
+  });
+
+  factory Contacts.fromJson(Map<String, dynamic> json) =>
+      _$ContactsFromJson(json);
+  Map<String, dynamic> toJson() => _$ContactsToJson(this);
+}
+
+@JsonSerializable()
+class Contact {
+  final String name;
+  final String link;
+  final String detail;
+  final String title;
+
+  Contact({
+    this.name = '',
+    this.link = '',
+    this.detail = '',
+    this.title = '',
+  });
+
+  factory Contact.fromJson(Map<String, dynamic> json) =>
+      _$ContactFromJson(json);
+  Map<String, dynamic> toJson() => _$ContactToJson(this);
+}
+
+@JsonSerializable()
 class Glossary {
   final List<Term> terms;
 

@@ -20,6 +20,31 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
     };
 
+Contacts _$ContactsFromJson(Map<String, dynamic> json) => Contacts(
+      contacts: (json['contacts'] as List<dynamic>?)
+              ?.map((e) => Contact.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$ContactsToJson(Contacts instance) => <String, dynamic>{
+      'contacts': instance.contacts,
+    };
+
+Contact _$ContactFromJson(Map<String, dynamic> json) => Contact(
+      name: json['name'] as String? ?? '',
+      link: json['link'] as String? ?? '',
+      detail: json['detail'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$ContactToJson(Contact instance) => <String, dynamic>{
+      'name': instance.name,
+      'link': instance.link,
+      'detail': instance.detail,
+      'title': instance.title,
+    };
+
 Glossary _$GlossaryFromJson(Map<String, dynamic> json) => Glossary(
       terms: (json['terms'] as List<dynamic>?)
               ?.map((e) => Term.fromJson(e as Map<String, dynamic>))
