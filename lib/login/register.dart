@@ -135,7 +135,7 @@ class _RegisterForm extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: TextFormField(
-                        controller: firstNameController,
+                        controller: lastNameController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.emailAddress,
                         decoration:

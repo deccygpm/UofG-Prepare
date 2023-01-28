@@ -18,9 +18,9 @@ class UserProfileWrapper extends StatelessWidget {
             return Text(snapshot.error.toString());
           } else if (snapshot.hasData) {
             if (snapshot.data?.email == '') {
-              return GuestUserProfileScreen(user: snapshot.data);
+              return const GuestUserProfileScreen();
             } else {
-              return UserWithFullProfileScreen(user: snapshot.data);
+              return UserWithFullProfileScreen(user: snapshot.data!);
             }
           } else {
             return const Text('Database Problem');

@@ -38,6 +38,7 @@ class _AppState extends State<App> {
               create: (_) => FirestoreService().streamReport(),
               initialData: Report(),
               child: MaterialApp(
+                debugShowCheckedModeBanner: false,
                 scaffoldMessengerKey: Utils.messengerKey,
                 navigatorKey: navigatorKey,
                 routes: appRoutes,
