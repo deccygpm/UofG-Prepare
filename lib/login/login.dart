@@ -32,21 +32,21 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 100,
-          ),
-          _LoginForm(
-              formKey: formKey,
-              emailController: emailController,
-              passwordController: passwordController),
-          const LoginButtons(),
-          _RegisterLink(widget: widget),
-          const Spacer(
-            flex: 2,
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 100,
+            ),
+            _LoginForm(
+                formKey: formKey,
+                emailController: emailController,
+                passwordController: passwordController),
+            const LoginButtons(),
+            _RegisterLink(widget: widget),
+          ],
+        ),
       ),
     );
   }

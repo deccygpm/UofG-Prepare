@@ -33,21 +33,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        const SizedBox(
-          height: 100,
-        ),
-        _RegisterForm(
-            formKey: formKey,
-            firstNameController: firstNameController,
-            lastNameController: lastNameController,
-            emailController: emailController,
-            passwordController: passwordController,
-            passwordMatchController: passwordMatchController),
-        _SignInLink(widget: widget),
-        const Spacer(flex: 3)
-      ],
+        body: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 100,
+          ),
+          _RegisterForm(
+              formKey: formKey,
+              firstNameController: firstNameController,
+              lastNameController: lastNameController,
+              emailController: emailController,
+              passwordController: passwordController,
+              passwordMatchController: passwordMatchController),
+          _SignInLink(widget: widget),
+        ],
+      ),
     ));
   }
 }

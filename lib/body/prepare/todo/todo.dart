@@ -14,6 +14,12 @@ class ToDoScreen extends StatefulWidget {
 
 class _ToDoScreenState extends State<ToDoScreen> {
   @override
+  initState() {
+    super.initState();
+    FirestoreService().getToDoList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<ToDoList>(
         stream: FirestoreService().streamToDoList(),
