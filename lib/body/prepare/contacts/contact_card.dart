@@ -42,7 +42,7 @@ class ContactCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
+                const Text(
                   '✍️',
                   style: TextStyle(fontSize: 50),
                 )
