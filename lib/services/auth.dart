@@ -168,4 +168,12 @@ class AuthService {
       Utils.showErrorAlert(e.message);
     }
   }
+
+  Future<void> updatePassword(String newPassword) async {
+    try {
+      await FirebaseAuth.instance.currentUser!.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      Utils.showErrorAlert(e.message);
+    }
+  }
 }
