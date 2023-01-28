@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uofg_prepare/body/prepare/academic_resources/academic_resource_card.dart';
 import 'package:uofg_prepare/services/firestore.dart';
 import 'package:uofg_prepare/services/models.dart';
 import 'package:uofg_prepare/shared/shared.dart';
@@ -75,7 +76,8 @@ class _AcademicResourcesScreenState extends State<AcademicResourcesScreen> {
                                                     element.category ==
                                                     categories[index])
                                                 .toList();
-                                        return Text(filteredResources[i].title);
+                                        return AcademicResourceCard(
+                                            resource: filteredResources[i]);
                                       }))
                                 ],
                               ),

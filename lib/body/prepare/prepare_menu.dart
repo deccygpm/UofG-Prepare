@@ -6,7 +6,6 @@ import 'package:uofg_prepare/body/prepare/contacts/contacts.dart';
 import 'package:uofg_prepare/body/prepare/english_language/english_language.dart';
 import 'package:uofg_prepare/body/prepare/extracurricular/extracurricular.dart';
 import 'package:uofg_prepare/body/prepare/glossary/glossary.dart';
-import 'package:uofg_prepare/body/prepare/socials/socials.dart';
 import 'package:uofg_prepare/body/prepare/testimonials/testimonials.dart';
 import 'package:uofg_prepare/body/prepare/timetable/timetable.dart';
 import 'package:uofg_prepare/body/prepare/todo/todo.dart';
@@ -129,11 +128,6 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
           builder: (BuildContext context) => const EnglishLanguageScreen(),
         ));
         break;
-      case 'Socials':
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => const SocialsScreen(),
-        ));
-        break;
       case 'Example Timetable':
         Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context) => const TimetableScreen(),
@@ -151,7 +145,7 @@ class _PrepareMenuScreenState extends State<PrepareMenuScreen> {
         break;
 
       default:
-        Utils.showSuccessAlert('I work');
+        Utils.showErrorAlert('Section Not Available');
     }
   }
 }
