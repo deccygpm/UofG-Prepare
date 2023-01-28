@@ -1,7 +1,7 @@
-import 'package:l2_transition/home/home.dart';
-import 'package:l2_transition/login/auth_wrapper.dart';
-import 'package:l2_transition/profile/profile_wrapper.dart';
-import 'package:l2_transition/body/body_wrapper.dart';
+import 'package:uofg_prepare/body/body_wrapper.dart';
+import 'package:uofg_prepare/home/home.dart';
+import 'package:uofg_prepare/login/auth_wrapper.dart';
+import 'package:uofg_prepare/profile/profile_wrapper.dart';
 
 var appRoutes = {
   '/': (context) => const Home(),

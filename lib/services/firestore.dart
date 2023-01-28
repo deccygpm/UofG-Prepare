@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:l2_transition/services/auth.dart';
-import 'package:l2_transition/services/models.dart';
+import 'package:uofg_prepare/services/auth.dart';
+import 'package:uofg_prepare/services/models.dart';
 
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -18,6 +18,53 @@ class FirestoreService {
     });
   }
 
+  Stream<ToDoList> streamToDoList() {
+    return AuthService().userStream.switchMap((user) {
+      if (user != null) {
+        var ref = _db.collection('todo-reports').doc(user.uid);
+        return ref.snapshots().map(((doc) => ToDoList.fromJson(doc.data()!)));
+      } else {
+        return Stream.fromIterable([ToDoList()]);
+      }
+    });
+  }
+
+  Future<AcademicResources> getAcademicResources() async {
+    var ref = _db.collection('socs-sections').doc('academic-resources');
+    var snapshot = await ref.get();
+    return AcademicResources.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<Contacts> getContacts() async {
+    var ref = _db.collection('socs-sections').doc('contacts');
+    var snapshot = await ref.get();
+    return Contacts.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<Testimonials> getTestimonials() async {
+    var ref = _db.collection('socs-sections').doc('testimonials');
+    var snapshot = await ref.get();
+    return Testimonials.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<Extracurricular> getExtracurricular() async {
+    var ref = _db.collection('socs-sections').doc('extracurricular');
+    var snapshot = await ref.get();
+    return Extracurricular.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<EnglishLanguage> getEnglishLanguage() async {
+    var ref = _db.collection('socs-sections').doc('english-language');
+    var snapshot = await ref.get();
+    return EnglishLanguage.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<Glossary> getGlossary() async {
+    var ref = _db.collection('socs-sections').doc('glossary');
+    var snapshot = await ref.get();
+    return Glossary.fromJson(snapshot.data() ?? {});
+  }
+
   Future<void> updateUserReport(Quiz quiz) {
     var user = AuthService().user!;
     var ref = _db.collection('reports').doc(user.uid);
@@ -30,6 +77,48 @@ class FirestoreService {
     };
 
     return ref.set(data, SetOptions(merge: true));
+  }
+
+  Future<void> updateUserToDoList(int index) async {
+    var user = AuthService().user!;
+    var ref = _db.collection('todo-reports').doc(user.uid);
+    var snapshot = await ref.get();
+
+    var newData = snapshot.data();
+    newData!['todos'][index]['complete'] = !newData['todos'][index]['complete'];
+
+    await ref.set(newData);
+  }
+
+  Future<ToDoList> getToDoList() async {
+    var alreadyExists = await _userToDoReportExists();
+    if (alreadyExists == true) {
+      return _getUserToDoReport();
+    } else {
+      _createUserToDoList();
+      return _getUserToDoReport();
+    }
+  }
+
+  Future<void> _createUserToDoList() async {
+    var ref = _db.collection('todo-reports').doc('1');
+    var standard = await ref.get();
+    await _db
+        .collection('todo-reports')
+        .doc(AuthService().user!.uid)
+        .set(standard.data() ?? {});
+  }
+
+  Future<ToDoList> _getUserToDoReport() async {
+    var ref = _db.collection('todo-reports').doc(AuthService().user!.uid);
+    var snapshot = await ref.get();
+    return ToDoList.fromJson(snapshot.data() ?? {});
+  }
+
+  Future<bool> _userToDoReportExists() async {
+    var ref = _db.collection('todo-reports').doc(AuthService().user!.uid);
+    var snapshot = await ref.get();
+    return snapshot.exists;
   }
 
   Future<List<School>> getSchools() async {

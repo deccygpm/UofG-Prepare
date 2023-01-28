@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/login/login.dart';
-import 'package:l2_transition/login/register.dart';
-import 'package:l2_transition/shared/app_bar.dart';
+import 'package:uofg_prepare/login/login.dart';
+import 'package:uofg_prepare/login/register.dart';
+import 'package:uofg_prepare/shared/shared.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

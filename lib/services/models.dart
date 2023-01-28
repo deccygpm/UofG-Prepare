@@ -21,6 +21,242 @@ class AppUser {
 }
 
 @JsonSerializable()
+class AcademicResources {
+  final List<AcademicResource> resources;
+
+  AcademicResources({
+    this.resources = const [],
+  });
+
+  factory AcademicResources.fromJson(Map<String, dynamic> json) =>
+      _$AcademicResourcesFromJson(json);
+  Map<String, dynamic> toJson() => _$AcademicResourcesToJson(this);
+}
+
+@JsonSerializable()
+class AcademicResource {
+  final String title;
+  final String link;
+  final String description;
+  final String category;
+
+  AcademicResource({
+    this.title = '',
+    this.link = '',
+    this.description = '',
+    this.category = '',
+  });
+
+  factory AcademicResource.fromJson(Map<String, dynamic> json) =>
+      _$AcademicResourceFromJson(json);
+  Map<String, dynamic> toJson() => _$AcademicResourceToJson(this);
+}
+
+@JsonSerializable()
+class Contacts {
+  final List<Contact> contacts;
+
+  Contacts({
+    this.contacts = const [],
+  });
+
+  factory Contacts.fromJson(Map<String, dynamic> json) =>
+      _$ContactsFromJson(json);
+  Map<String, dynamic> toJson() => _$ContactsToJson(this);
+}
+
+@JsonSerializable()
+class Contact {
+  final String name;
+  final String link;
+  final String detail;
+  final String title;
+
+  Contact({
+    this.name = '',
+    this.link = '',
+    this.detail = '',
+    this.title = '',
+  });
+
+  factory Contact.fromJson(Map<String, dynamic> json) =>
+      _$ContactFromJson(json);
+  Map<String, dynamic> toJson() => _$ContactToJson(this);
+}
+
+@JsonSerializable()
+class Glossary {
+  final List<Term> terms;
+
+  Glossary({
+    this.terms = const [],
+  });
+
+  factory Glossary.fromJson(Map<String, dynamic> json) =>
+      _$GlossaryFromJson(json);
+  Map<String, dynamic> toJson() => _$GlossaryToJson(this);
+}
+
+@JsonSerializable()
+class EnglishLanguage {
+  final List<Resource> resources;
+
+  EnglishLanguage({
+    this.resources = const [],
+  });
+
+  factory EnglishLanguage.fromJson(Map<String, dynamic> json) =>
+      _$EnglishLanguageFromJson(json);
+  Map<String, dynamic> toJson() => _$EnglishLanguageToJson(this);
+}
+
+@JsonSerializable()
+class Extracurricular {
+  final List<Resource> resources;
+
+  Extracurricular({
+    this.resources = const [],
+  });
+
+  factory Extracurricular.fromJson(Map<String, dynamic> json) =>
+      _$ExtracurricularFromJson(json);
+  Map<String, dynamic> toJson() => _$ExtracurricularToJson(this);
+}
+
+@JsonSerializable()
+class Resource {
+  final String name;
+  final String description;
+  final String link;
+  final String image;
+
+  Resource({
+    this.name = '',
+    this.description = '',
+    this.link = '',
+    this.image = '',
+  });
+
+  factory Resource.fromJson(Map<String, dynamic> json) =>
+      _$ResourceFromJson(json);
+  Map<String, dynamic> toJson() => _$ResourceToJson(this);
+}
+
+@JsonSerializable()
+class Testimonials {
+  final List<Testimony> testimony;
+
+  Testimonials({
+    this.testimony = const [],
+  });
+
+  factory Testimonials.fromJson(Map<String, dynamic> json) =>
+      _$TestimonialsFromJson(json);
+  Map<String, dynamic> toJson() => _$TestimonialsToJson(this);
+}
+
+@JsonSerializable()
+class Testimony {
+  final Interview interview;
+  final TestimonyIntro intro;
+
+  Testimony({
+    this.interview = const Interview(),
+    this.intro = const TestimonyIntro(),
+  });
+
+  factory Testimony.fromJson(Map<String, dynamic> json) =>
+      _$TestimonyFromJson(json);
+  Map<String, dynamic> toJson() => _$TestimonyToJson(this);
+}
+
+@JsonSerializable()
+class TestimonyIntro {
+  final String course;
+  final String name;
+  final String icon;
+
+  const TestimonyIntro({
+    this.course = '',
+    this.name = '',
+    this.icon = '',
+  });
+
+  factory TestimonyIntro.fromJson(Map<String, dynamic> json) =>
+      _$TestimonyIntroFromJson(json);
+  Map<String, dynamic> toJson() => _$TestimonyIntroToJson(this);
+}
+
+@JsonSerializable()
+class Interview {
+  final List<InterviewQuestion> questions;
+
+  const Interview({
+    this.questions = const [],
+  });
+
+  factory Interview.fromJson(Map<String, dynamic> json) =>
+      _$InterviewFromJson(json);
+  Map<String, dynamic> toJson() => _$InterviewToJson(this);
+}
+
+@JsonSerializable()
+class InterviewQuestion {
+  final String question;
+  final String answer;
+
+  InterviewQuestion({
+    this.question = '',
+    this.answer = '',
+  });
+
+  factory InterviewQuestion.fromJson(Map<String, dynamic> json) =>
+      _$InterviewQuestionFromJson(json);
+  Map<String, dynamic> toJson() => _$InterviewQuestionToJson(this);
+}
+
+@JsonSerializable()
+class Term {
+  final String term;
+  final String definition;
+
+  Term({
+    this.definition = '',
+    this.term = '',
+  });
+
+  factory Term.fromJson(Map<String, dynamic> json) => _$TermFromJson(json);
+  Map<String, dynamic> toJson() => _$TermToJson(this);
+}
+
+@JsonSerializable()
+class ToDoList {
+  final List<ToDo> todos;
+
+  ToDoList({
+    this.todos = const [],
+  });
+
+  factory ToDoList.fromJson(Map<String, dynamic> json) =>
+      _$ToDoListFromJson(json);
+  Map<String, dynamic> toJson() => _$ToDoListToJson(this);
+}
+
+@JsonSerializable()
+class ToDo {
+  final String detail;
+  bool complete;
+
+  ToDo({
+    this.complete = false,
+    this.detail = '',
+  });
+
+  factory ToDo.fromJson(Map<String, dynamic> json) => _$ToDoFromJson(json);
+  Map<String, dynamic> toJson() => _$ToDoToJson(this);
+}
+
+@JsonSerializable()
 class Report {
   final String uid;
   final int total;

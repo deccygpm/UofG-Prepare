@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/profile/full_user_profile.dart';
-import 'package:l2_transition/profile/guest_user_profile.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/shared/shared.dart';
+import 'package:uofg_prepare/profile/full_user_profile.dart';
+import 'package:uofg_prepare/profile/guest_user_profile.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/shared/shared.dart';
 
 class UserProfileWrapper extends StatelessWidget {
   const UserProfileWrapper({super.key});

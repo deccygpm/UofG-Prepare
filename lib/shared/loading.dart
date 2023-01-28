@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});

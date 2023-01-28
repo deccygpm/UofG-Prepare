@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/topic/topic_content_intro.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/utils.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/study/topic/topic_content_intro.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/utils.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class TopicTile extends StatelessWidget {
   final Topic topic;

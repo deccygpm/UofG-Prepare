@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/topic/topic_content_body.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/study/topic/topic_content_body.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class TopicIntroScreen extends StatelessWidget {
   final Topic topic;
@@ -28,7 +28,7 @@ class TopicIntroScreen extends StatelessWidget {
         appBar: const CustomAppBar(),
         body: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

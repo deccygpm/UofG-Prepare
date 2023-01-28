@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 import 'package:provider/provider.dart';
 
 import 'quiz_state.dart';
@@ -16,7 +16,7 @@ class QuizIntroScreen extends StatelessWidget {
         create: (_) => QuizState(),
         child: Container(
           color: themeBlue,
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 60),
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(

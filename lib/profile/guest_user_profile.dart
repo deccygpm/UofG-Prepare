@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
-import 'package:l2_transition/services/auth.dart';
-import 'package:l2_transition/services/local_data.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+
+import 'package:uofg_prepare/services/auth.dart';
+import 'package:uofg_prepare/services/local_data.dart';
+import 'package:uofg_prepare/services/models.dart';
+
+import 'package:uofg_prepare/shared/shared.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class GuestUserProfileScreen extends StatelessWidget {
   const GuestUserProfileScreen({Key? key, required this.user})

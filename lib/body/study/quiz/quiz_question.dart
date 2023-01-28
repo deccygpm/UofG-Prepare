@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/body/study/quiz/quiz_state.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/sub_headline.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/body/study/quiz/quiz_state.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/sub_headline.dart';
+import 'package:uofg_prepare/theme.dart';
 import 'package:provider/provider.dart';
 
 class QuizQuestionScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class QuizQuestionScreen extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                    'assets/image/illustrations/project_manager/twelve.png'),
+                    'assets/image/illustrations/project_manager/fifteen.png'),
                 SubHeadline(data: 'Q: ${question.question}'),
               ],
             ),
@@ -89,7 +89,7 @@ class QuizQuestionScreen extends StatelessWidget {
                     correct
                         ? "That's right, well done!"
                         : "Incorrect, try again",
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/main.dart';
-import 'package:l2_transition/services/auth.dart';
-import 'package:l2_transition/services/validation.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+import 'package:uofg_prepare/main.dart';
+import 'package:uofg_prepare/services/auth.dart';
+import 'package:uofg_prepare/services/validation.dart';
+import 'package:uofg_prepare/shared/headline.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class RegistrationScreen extends StatefulWidget {
   final PageController controller;

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:l2_transition/services/auth.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/shared.dart';
-import 'package:l2_transition/theme.dart';
+
+import 'package:uofg_prepare/services/auth.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/app_bar.dart';
+import 'package:uofg_prepare/theme.dart';
 
 class UserWithFullProfileScreen extends StatelessWidget {
   const UserWithFullProfileScreen({Key? key, required this.user})

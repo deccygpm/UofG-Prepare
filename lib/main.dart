@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:l2_transition/routes.dart';
-import 'package:l2_transition/services/firestore.dart';
-import 'package:l2_transition/services/models.dart';
-import 'package:l2_transition/shared/utils.dart';
-import 'package:l2_transition/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:uofg_prepare/routes.dart';
+import 'package:uofg_prepare/services/firestore.dart';
+import 'package:uofg_prepare/services/models.dart';
+import 'package:uofg_prepare/shared/utils.dart';
+import 'package:uofg_prepare/theme.dart';
 
 import 'services/firebase_options.dart';
 
