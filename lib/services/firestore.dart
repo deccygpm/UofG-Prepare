@@ -29,6 +29,12 @@ class FirestoreService {
     });
   }
 
+  Future<AcademicResources> getAcademicResources() async {
+    var ref = _db.collection('socs-sections').doc('academic-resources');
+    var snapshot = await ref.get();
+    return AcademicResources.fromJson(snapshot.data() ?? {});
+  }
+
   Future<Contacts> getContacts() async {
     var ref = _db.collection('socs-sections').doc('contacts');
     var snapshot = await ref.get();

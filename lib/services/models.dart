@@ -21,6 +21,38 @@ class AppUser {
 }
 
 @JsonSerializable()
+class AcademicResources {
+  final List<AcademicResource> resources;
+
+  AcademicResources({
+    this.resources = const [],
+  });
+
+  factory AcademicResources.fromJson(Map<String, dynamic> json) =>
+      _$AcademicResourcesFromJson(json);
+  Map<String, dynamic> toJson() => _$AcademicResourcesToJson(this);
+}
+
+@JsonSerializable()
+class AcademicResource {
+  final String title;
+  final String link;
+  final String description;
+  final String category;
+
+  AcademicResource({
+    this.title = '',
+    this.link = '',
+    this.description = '',
+    this.category = '',
+  });
+
+  factory AcademicResource.fromJson(Map<String, dynamic> json) =>
+      _$AcademicResourceFromJson(json);
+  Map<String, dynamic> toJson() => _$AcademicResourceToJson(this);
+}
+
+@JsonSerializable()
 class Contacts {
   final List<Contact> contacts;
 
