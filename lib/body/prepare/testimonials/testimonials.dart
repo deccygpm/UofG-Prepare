@@ -23,20 +23,21 @@ class TestimonialsScreen extends StatelessWidget {
               children: [
                 Headline(data: 'Testimonials', color: themeBlue),
                 Expanded(
-                  child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(20),
-                          child:
-                              TestimonialCard(testimony: testimonials[index]),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return const Divider(
-                          color: Colors.transparent,
-                        );
-                      },
-                      itemCount: testimonials.length),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 10),
+                    child: ListView.separated(
+                        itemBuilder: (context, index) {
+                          return TestimonialCard(
+                              testimony: testimonials[index]);
+                        },
+                        separatorBuilder: (context, index) {
+                          return const Divider(
+                            color: Colors.transparent,
+                          );
+                        },
+                        itemCount: testimonials.length),
+                  ),
                 )
               ],
             ),
