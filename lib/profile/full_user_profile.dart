@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uofg_prepare/profile/acknowledgements.dart';
 import 'package:uofg_prepare/profile/confirmation_modal.dart';
 import 'package:uofg_prepare/profile/reset_password.dart';
 
@@ -126,6 +127,16 @@ class UserWithFullProfileScreen extends StatelessWidget {
               ],
             ),
           ),
+          TextButton(
+              onPressed: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: ((context) {
+                    return const AcknowledgementsScreen();
+                  }))),
+              child: Text(
+                'Acknowledgements',
+                style: TextStyle(
+                    color: themeGrey, decoration: TextDecoration.underline),
+              )),
         ],
       ),
     );

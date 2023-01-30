@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uofg_prepare/profile/acknowledgements.dart';
 import 'package:uofg_prepare/services/auth.dart';
 import 'package:uofg_prepare/services/local_data.dart';
 import 'package:uofg_prepare/shared/shared.dart';
@@ -92,6 +93,16 @@ class GuestUserProfileScreen extends StatelessWidget {
               ],
             ),
           ),
+          TextButton(
+              onPressed: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: ((context) {
+                    return const AcknowledgementsScreen();
+                  }))),
+              child: Text(
+                'Acknowledgements',
+                style: TextStyle(
+                    color: themeGrey, decoration: TextDecoration.underline),
+              )),
         ],
       ),
     );
