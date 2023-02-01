@@ -364,14 +364,15 @@ class Topic {
   final List<Block> contents;
   final Quiz quiz;
   final Intro intro;
+  final String link;
 
-  Topic({
-    this.name = '',
-    this.contents = const [],
-    this.image = '',
-    this.quiz = const Quiz(),
-    this.intro = const Intro(),
-  });
+  Topic(
+      {this.name = '',
+      this.contents = const [],
+      this.image = '',
+      this.quiz = const Quiz(),
+      this.intro = const Intro(),
+      this.link = ''});
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
   Map<String, dynamic> toJson() => _$TopicToJson(this);

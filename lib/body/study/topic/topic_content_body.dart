@@ -70,12 +70,14 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
                     ),
                     height: MediaQuery.of(context).size.height * .6,
                     width: MediaQuery.of(context).size.width * 0.9,
-                    child: Stack(
-                      fit: StackFit.passthrough,
+                    child: Column(
                       children: <Widget>[
                         FancyText(
                           data: _content[index].body,
                           color: Colors.black,
+                        ),
+                        const Divider(
+                          color: Colors.transparent,
                         ),
                         Image.asset(
                           'assets/image/programming/${_content[index].image}',

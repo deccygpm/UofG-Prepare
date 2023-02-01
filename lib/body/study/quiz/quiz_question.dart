@@ -34,7 +34,7 @@ class QuizQuestionScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: question.options.map((option) {
                 return Container(
-                  height: 90,
+                  height: 100,
                   margin: const EdgeInsets.only(bottom: 10),
                   color: themeBlue,
                   child: InkWell(
