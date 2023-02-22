@@ -85,7 +85,7 @@ class TopicIntroScreen extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      'Tutorials Point',
+                      'Click Here for Additional Reading',
                       style: TextStyle(
                           color: themeGrey,
                           fontSize: 14,

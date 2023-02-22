@@ -73,6 +73,7 @@ flutter:
      - assets/image/misc/
      - assets/image/dict_logos/
      - assets/image/programming/
+     - assets/image/python/
      - assets/image/illustrations/
      - assets/image/illustrations/character/
      - assets/image/illustrations/project_manager/

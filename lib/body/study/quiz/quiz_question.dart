@@ -20,9 +20,12 @@ class QuizQuestionScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             alignment: Alignment.center,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                    'assets/image/illustrations/project_manager/fifteen.png'),
+                  'assets/image/illustrations/project_manager/fifteen.png',
+                  scale: 8,
+                ),
                 SubHeadline(data: 'Q: ${question.question}'),
               ],
             ),
